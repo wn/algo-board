@@ -5,19 +5,59 @@ import { Arrow, Circle, Group, Shape } from 'react-konva';
 import EditableText from './EditableText';
 
 class LLNode extends React.Component {
-  updateLineStart = e =>
-    this.props.updateState(this.props.shapeId, {
-      ...this.props.shapeState,
-      shapeSourceX: e.target.x(),
-      shapeSourceY: e.target.y()
-    });
 
-  updateLineEnd = e =>
-    this.props.updateState(this.props.shapeId, {
+  updateLineStart = e => {
+    this.props.updateState(
+      this.props.shapeId,
+      {
+        ...this.props.shapeState,
+        shapeSourceX: e.target.x(),
+        shapeSourceY: e.target.y(),
+      }
+    );
+    Object.keys(this.props.pointingToThis).forEach(shapeId => {
+      if (!this.props.pointingToThis[shapeId]) return;
+      this.props.updateState(
+        shapeId,
+        {
+          ...this.props.allDataStructures[shapeId],
+          lineEndX: e.target.x(),
+          lineEndY: e.target.y(),
+        }
+      );
+    });
+  }
+
+  updateLineEnd = e => {
+    this.props.updateState(
+      this.props.shapeId,
+      {
       ...this.props.shapeState,
       lineEndX: e.target.x(),
-      lineEndY: e.target.y()
+      lineEndY: e.target.y(),
     });
+  }
+
+  checkConnections = e => {
+    const { lineEndX, lineEndY } = this.props.shapeState;
+    const nodes = this.searchNearbyNodes(lineEndX, lineEndY);
+    if (nodes.length) this.props.connectNodes(this.props.shapeId, nodes[0]);
+  }
+
+  searchNearbyNodes = (x, y) => {
+    const res = Object.keys(this.props.allDataStructures);
+    return res.filter(key => key !== this.props.shapeId)
+      .filter(key => {
+        const struct = this.props.allDataStructures[key];
+        console.log(
+          Math.abs(struct.x - x),
+          Math.abs(struct.y - y)
+        );
+        return struct.structureName === "LLNode" 
+          && Math.abs(struct.shapeSourceX - x) < 20
+          && Math.abs(struct.shapeSourceY - y) < 20;
+      });
+  }
 
   render() {
     const shapeState = this.props.shapeState;
@@ -62,6 +102,7 @@ class LLNode extends React.Component {
           radius={10}
           draggable
           onDragMove={this.updateLineEnd}
+          onDragEnd={this.checkConnections}
         />
       </React.Fragment>
     );
@@ -70,16 +111,19 @@ class LLNode extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    shapeState: state.konva.dataStructures[ownProps.shapeId]
-  };
+    shapeState: state.konva.dataStructures[ownProps.shapeId],
+    allDataStructures: state.konva.dataStructures,
+    pointingToThis: state.konva.associations.pointingTo[ownProps.shapeId],
+  }
 };
 
 const mapDispatchToProps = dispatch => ({
-  updateState: (id, shapeState) =>
-    dispatch({
-      type: 'UPDATE_SHAPE_STATE',
-      payload: { shapeState, id: id.toString() }
-    })
+  updateState: (id, shapeState) => dispatch({
+    type: "UPDATE_SHAPE_STATE", payload: { shapeState, id: id.toString() }
+  }),
+  connectNodes: (source, dest) => dispatch({
+    type: "CONNECT_NODES", payload: { source, dest }
+  }),
 });
 
 export default connect(
