@@ -51,6 +51,22 @@ export default function(state = initialState, action) {
         }
       };
     }
+    /**
+     * id - the unique identifier for this shape
+     * shapeState - an object, possibly undefined, containing any number of properties
+     */
+    case "UPDATE_SHAPE_STATE": {
+      return {
+        ...state,
+        dataStructures: {
+          ...state.dataStructures,
+          [action.payload.id]: {
+            ...state.dataStructures[action.payload.id],
+            ...(action.payload.shapeState || {})
+          }
+        }
+      }
+    }
     default:
       return state;
   }
