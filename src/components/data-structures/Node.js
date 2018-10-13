@@ -4,14 +4,14 @@ import Konva from 'konva';
 
 export default class Node extends React.Component {
   state = {
-    color: 'red'
+    color: 'black'
   };
 
   render() {
     return (
       <Circle
         radius={50}
-        fill={this.state.color}
+        stroke={this.state.color}
         shadowBlur={5}
         onClick={this.handleClick}
         draggable
