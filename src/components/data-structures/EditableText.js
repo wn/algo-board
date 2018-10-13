@@ -7,7 +7,7 @@ export default class EditableText extends React.Component {
   state = {
     x: 0,
     y: 0,
-    text: 'node',
+    text: 'null',
   };
 
   onTextClick (text) {
