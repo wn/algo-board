@@ -1,8 +1,6 @@
 import React from 'react';
-import { Circle, Group, Shape, Text } from 'react-konva';
-import Konva from 'konva';
+import { Circle, Group } from 'react-konva';
 
-import LLNode from './LLNode';
 import EditableText from './EditableText';
 
 export default class GraphNode extends React.Component {

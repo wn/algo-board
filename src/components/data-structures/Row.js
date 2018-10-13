@@ -1,5 +1,4 @@
 import React from 'react';
-import { Rect } from 'react-konva';
 import Data from './Data';
 import EditableText from './EditableText';
 

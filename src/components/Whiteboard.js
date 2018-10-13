@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import Konva from 'konva';
 import { Stage, Layer } from 'react-konva';
-
-// Data structures
-import LLNode from './data-structures/LLNode';
-import List from './data-structures/List';
-import GraphNode from './data-structures/GraphNode';
-import Hashtable from './data-structures/Hashtable';
-import Pointer from './data-structures/Pointer';
-import GraphList from './data-structures/GraphList';
 
 class Whiteboard extends Component {
   state = {
