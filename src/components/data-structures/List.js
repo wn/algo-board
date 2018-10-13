@@ -9,15 +9,21 @@ export default class List extends React.Component {
   };
 
   render() {
+    const values = new Array(this.props.size).fill(null);
+    this.props.values
+      .split(", ").map(x => x.trim())
+      .map((val, index) => { values[index] = val; });
+
     return (
       <Group draggable>
-        {new Array(this.props.size).fill(null).map((val, index) => {
+        {values.map((val, index) => {
           return (
             <SquareNode
               key={index}
               displacement={index}
               x={this.state.x}
               y={this.state.y}
+              text={val}
             />
           );
         })}

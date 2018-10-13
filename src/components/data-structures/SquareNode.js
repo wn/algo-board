@@ -18,6 +18,7 @@ export default class Node extends React.Component {
         <EditableText
           x={this.props.x + this.props.displacement * 50 + 10}
           y={this.props.y + 20}
+          text={this.props.text}
         />
       </Group>
     );

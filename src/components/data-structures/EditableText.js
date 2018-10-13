@@ -21,12 +21,9 @@ export default class EditableText extends React.Component {
   }
 
   render() {
-    /** Set default x and y as 0 */
     const {x, y} = {
       x: this.state.x,
       y: this.state.y,
-      width: 50,
-      height: 50,
       ...this.props,
     }
 
@@ -34,7 +31,7 @@ export default class EditableText extends React.Component {
       <Text
         x={x}
         y={y}
-        text={this.state.text}
+        text={this.props.text || this.state.text}
         align="center"
         verticalAlign="middle"
         fill={'black'}
