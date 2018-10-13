@@ -9,27 +9,7 @@ import Node from './data-structures/Node';
 
 class Whiteboard extends Component {
   state = {
-    text1: 'black',
-    text2: 'black',
-    text3: 'black',
-    text3x: 10,
-    text3y: 60,
     stageWidth: window.innerHeight
-  };
-  handleDragEnd = e => {
-    const name = e.target.name();
-    this.setState({
-      [name]: Konva.Util.getRandomColor()
-    });
-  };
-
-  handleThirdDragEnd = e => {
-    // correctly save node position
-    this.setState({
-      text3: Konva.Util.getRandomColor(),
-      text3x: e.target.x(),
-      text3y: e.target.y()
-    });
   };
 
   componentDidMount() {
