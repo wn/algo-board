@@ -3,8 +3,8 @@ import { Shape } from 'react-konva';
 
 export default class LLNode extends React.Component {
   state = {
-    startX : 0,
-    startY : 0,
+    startX: 0,
+    startY: 0
   };
 
   render() {

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Shape, Circle, Text } from 'react-konva';
-import Konva from 'konva';
+import { Circle } from 'react-konva';
 
-export default class Node extends React.Component {
+export default class GraphNode extends React.Component {
   state = {
     color: 'red'
   };

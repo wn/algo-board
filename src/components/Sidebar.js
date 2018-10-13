@@ -17,6 +17,6 @@ const Sidebar = (props) => {
         </ul>
     </div>
   );
-}
+};
 
 export default Sidebar;
