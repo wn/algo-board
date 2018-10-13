@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import Whiteboard from './components/Whiteboard.js';
-import './App.css';
 
+import './App.css';
 import Sidebar from './components/Sidebar';
 import Whiteboard from './components/Whiteboard';
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <Grid fluid>
