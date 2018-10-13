@@ -1,7 +1,7 @@
-import React from 'react';
-import { Rect } from 'react-konva';
-import Data from './Data';
-import EditableText from './EditableText';
+import React from "react";
+import { Rect } from "react-konva";
+import Data from "./Data";
+import EditableText from "./EditableText";
 
 export default class Row extends React.Component {
   render() {

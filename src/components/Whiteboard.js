@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
-import Konva from 'konva';
-import { Stage, Layer } from 'react-konva';
+import React, { Component } from "react";
+import Konva from "konva";
+import { Stage, Layer } from "react-konva";
 
 // Data structures
-import LLNode from './data-structures/LLNode';
-import List from './data-structures/List';
-import GraphNode from './data-structures/GraphNode';
-import Hashtable from './data-structures/Hashtable';
-import Pointer from './data-structures/Pointer';
+import LLNode from "./data-structures/LLNode";
+import List from "./data-structures/List";
+import GraphNode from "./data-structures/GraphNode";
+import Hashtable from "./data-structures/Hashtable";
+import Pointer from "./data-structures/Pointer";
 
 class Whiteboard extends Component {
   state = {
     stageWidth: window.innerHeight,
-    tailMove: {
-
-    },
-    headMove: {
-
-    }
+    tailMove: {},
+    headMove: {}
   };
 
   componentDidMount() {
     this.checkSize();
-    window.addEventListener('resize', this.checkSize);
+    window.addEventListener("resize", this.checkSize);
   }
 
   checkSize = () => {
@@ -33,7 +29,7 @@ class Whiteboard extends Component {
   };
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.checkSize);
+    window.removeEventListener("resize", this.checkSize);
   }
 
   render() {

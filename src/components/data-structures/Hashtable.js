@@ -1,6 +1,6 @@
-import React from 'react';
-import Row from './Row';
-import { Group } from 'react-konva';
+import React from "react";
+import Row from "./Row";
+import { Group } from "react-konva";
 
 export default class Hashtable extends React.Component {
   state = {
@@ -14,7 +14,9 @@ export default class Hashtable extends React.Component {
       .split(", ")
       .map(x => x.trim())
       .map(x => x.split(" ", 2))
-      .map((p, index) => { keyValuePairs[index] = p; });
+      .map((p, index) => {
+        keyValuePairs[index] = p;
+      });
     return (
       <Group draggable>
         {keyValuePairs.map((pair, index) => {
