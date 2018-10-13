@@ -16,6 +16,18 @@ export default function(state = initialState, action) {
      * y - the y-coord
      */
     case "ADD_STRUCTURE": {
+      /** Conditionally add default local states for some shapes */
+      switch(action.payload.structureName) {
+        case "LLNode": {
+          action.payload.shapeState = {
+            ...action.payload.shapeState,
+            shapeSourceX: 0,
+            shapeSourceY: 0,
+            lineEndX: 150,
+            lineEndY: 35
+          }
+        }
+      }
       return {
         ...state,
         dataStructures: {
