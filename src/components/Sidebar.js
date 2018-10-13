@@ -34,9 +34,16 @@ class Sidebar extends React.Component {
 
 const mapStateToProps = state => {};
 const mapDispatchToProps = dispatch => ({
-  addStructure: (shapeState, structureName, id) => dispatch({
-    type: "ADD_STRUCTURE", payload: {shapeState, structureName, id: id.toString()}
-  })
+  addStructure: (shapeState, structureName, id) => {
+    var inputDS = ['List', 'GraphList', 'Hashtable'];
+    if (inputDS.includes(structureName) && !shapeState.values) {
+      alert(`Please fill in values for ${structureName}.`);
+    } else {
+      dispatch({
+        type: "ADD_STRUCTURE", payload: {shapeState, structureName, id: id.toString()}
+      });
+    }
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

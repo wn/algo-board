@@ -24,14 +24,7 @@ class Whiteboard extends Component {
   }
 
   render() {
-    const createDS = (dsName, props) => {
-      var inputDS = ['List', 'GraphList', 'Hashtable'];
-      if (inputDS.includes(dsName) && !props.values) {
-        alert(`Please fill in values for ${dsName}.`);
-      } else {
-        return this.dss[dsName].component(props);
-      }
-    };
+    const createDS = (dsName, props) => this.props.dss[dsName].component(props);
 
     console.log(this.props);
     return (
