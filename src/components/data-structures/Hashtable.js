@@ -11,10 +11,12 @@ export default class Hashtable extends React.Component {
   render() {
     const keyValuePairs = new Array(this.props.size).fill(null);
     this.props.keyValuePairs
-      .split(", ")
+      .split(',')
       .map(x => x.trim())
-      .map(x => x.split(" ", 2))
-      .map((p, index) => { keyValuePairs[index] = p; });
+      .map(x => x.split(' ', 2))
+      .map((p, index) => {
+        keyValuePairs[index] = p;
+      });
     return (
       <Group draggable>
         {keyValuePairs.map((pair, index) => {
