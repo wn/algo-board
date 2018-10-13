@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Arrow, Circle, Group, Shape } from 'react-konva';
 
 import EditableText from './EditableText'
 
-export default class LLNode extends React.Component {
+class LLNode extends React.Component {
 
   updateLineStart = e => {
     this.setState({
@@ -65,3 +66,15 @@ export default class LLNode extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  dataStructures: state.konva.dataStructures
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateState: (id, shapeState) => dispatch({
+    type: "UPDATE_SHAPE_STATE", payload: { shapeState, id: id.toString() }
+  })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LLNode);
