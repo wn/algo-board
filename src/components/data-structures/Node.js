@@ -1,15 +1,32 @@
 import React from 'react';
-import { Shape, Group, Circle, Text } from 'react-konva';
+import { Circle, Group, Shape, Text } from 'react-konva';
 import Konva from 'konva';
 
+import LLNode from './LLNode'
+
 export default class Node extends React.Component {
+
   state = {
     color: 'black'
   };
 
-  render() {
+  render(props) {
+    /** Set default x and y as 0 */
+    const {x, y} = {
+      x: 40,
+      y: 40,
+      ...props,
+    }
+
     return (
-      <Group draggable>
+      <Group 
+        x={x}
+        y={y}
+        draggable>
+        <Text
+          text={'asdf'}
+          fill={this.state.color}
+        />
         <Circle
           radius={50}
           stroke={this.state.color}
