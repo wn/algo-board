@@ -6,6 +6,7 @@ import { Stage, Layer } from 'react-konva';
 import LLNode from './data-structures/LLNode';
 import List from './data-structures/List';
 import GraphNode from './data-structures/GraphNode';
+import Hashtable from './data-structures/Hashtable';
 
 class Whiteboard extends Component {
   state = {
@@ -40,6 +41,7 @@ class Whiteboard extends Component {
             <LLNode />
             <List num={5} />
             <GraphNode />
+            <Hashtable />
           </Layer>
         </Stage>
       </div>
