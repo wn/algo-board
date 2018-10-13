@@ -4,12 +4,6 @@ import { Arrow, Circle, Group, Shape } from 'react-konva';
 import EditableText from './EditableText'
 
 export default class LLNode extends React.Component {
-  state ={
-    shapeSourceX: 0,
-    shapeSourceY: 0,
-    lineEndX: 150,
-    lineEndY: 35
-  }
 
   updateLineStart = e => {
     this.setState({
