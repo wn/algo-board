@@ -35,9 +35,7 @@ class Whiteboard extends Component {
       }}>
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
-            <LLNode />
-            <List num={5} />
-            <Node />
+            {this.props.dataStructures}
           </Layer>
         </Stage>
       </div>
