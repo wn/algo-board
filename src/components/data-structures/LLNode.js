@@ -22,7 +22,7 @@ class LLNode extends React.Component {
         {
           ...this.props.allDataStructures[shapeId],
           lineEndX: e.target.x(),
-          lineEndY: e.target.y(),
+          lineEndY: e.target.y() + 30,
         }
       );
     });
