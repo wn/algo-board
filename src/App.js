@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.dss = {
-      List: { propAttrs: ['size'], component: props => <List {...props} /> },
+      List: { propAttrs: ["size", "values"], component: props => <List {...props} /> },
       LLNode: { propAttrs: [], component: props => <LLNode {...props} /> },
       GraphNode: {
         propAttrs: [],
