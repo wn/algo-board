@@ -3,6 +3,7 @@ import { Circle, Group, Shape, Text } from 'react-konva';
 import Konva from 'konva';
 
 import LLNode from './LLNode'
+import EditableText from './EditableText'
 
 export default class GraphNode extends React.Component {
 
@@ -12,16 +13,6 @@ export default class GraphNode extends React.Component {
     x: 0,
     y: 0
   };
-
-  onTextClick (text) {
-    return (e) => {
-      const newText = prompt('Please enter some new text', text);
-      this.setState({
-        ...this.state,
-        text: newText
-      });
-    }
-  }
 
   handleDragEnd() {
     return (e) => {
@@ -45,19 +36,14 @@ export default class GraphNode extends React.Component {
       <Group 
         x={x}
         y={y}
-        onClick={this.onTextClick(this.state.text)} 
         onDragEnd={this.handleDragEnd(this)}
         draggable>
-        <Text
-          text={this.state.text}
-          fill={this.state.color}
-        />
         <Circle
           radius={50}
           stroke={this.state.color}
           shadowBlur={5}
-          onClick={this.handleClick}
         />
+        <EditableText />
       </Group>
     );
   }
