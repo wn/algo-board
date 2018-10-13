@@ -11,6 +11,12 @@ export default class Node extends React.Component {
     text: 'node'
   };
 
+  onTextClick (text) {
+    return (e) => {
+      const newText = prompt('Please enter some new text', text);
+    }
+  }
+
   render(props) {
     /** Set default x and y as 0 */
     const {x, y} = {
@@ -20,10 +26,7 @@ export default class Node extends React.Component {
     }
 
     return (
-      <Group 
-        x={x}
-        y={y}
-        draggable>
+      <Group x={x} y={y} onClick={this.onTextClick(this.state.text)} draggable>
         <Text
           x={x}
           y={y}
