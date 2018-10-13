@@ -8,6 +8,7 @@ import List from './data-structures/List';
 import GraphNode from './data-structures/GraphNode';
 import Hashtable from './data-structures/Hashtable';
 import Pointer from './data-structures/Pointer';
+import GraphList from './data-structures/GraphList';
 
 class Whiteboard extends Component {
   state = {
@@ -38,9 +39,7 @@ class Whiteboard extends Component {
         }}
       >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
-          <Layer>
-            {this.props.dataStructures}
-          </Layer>
+          <Layer>{this.props.dataStructures}</Layer>
         </Stage>
       </div>
     );
