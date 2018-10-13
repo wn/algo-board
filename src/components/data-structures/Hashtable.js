@@ -1,11 +1,11 @@
 import React from 'react';
-import SquareNode from './SquareNode';
+import Row from './Row';
 import { Group } from 'react-konva';
 
-export default class List extends React.Component {
+export default class Hashtable extends React.Component {
   state = {
-    x: 0,
-    y: 0,
+    startX: 20,
+    startY: 20,
     size: 10
   };
 
@@ -14,11 +14,11 @@ export default class List extends React.Component {
       <Group draggable>
         {new Array(this.state.size).fill(null).map((val, index) => {
           return (
-            <SquareNode
+            <Row
               key={index}
               displacement={index}
-              x={this.state.x}
-              y={this.state.y}
+              x={this.state.startX}
+              y={this.state.startY}
             />
           );
         })}

@@ -5,7 +5,8 @@ import { Stage, Layer } from 'react-konva';
 // Data structures
 import LLNode from './data-structures/LLNode';
 import List from './data-structures/List';
-import Node from './data-structures/Node';
+import GraphNode from './data-structures/GraphNode';
+import Hashtable from './data-structures/Hashtable';
 
 class Whiteboard extends Component {
   state = {
@@ -14,7 +15,7 @@ class Whiteboard extends Component {
 
   componentDidMount() {
     this.checkSize();
-    window.addEventListener("resize", this.checkSize);
+    window.addEventListener('resize', this.checkSize);
   }
 
   checkSize = () => {
@@ -25,14 +26,16 @@ class Whiteboard extends Component {
   };
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.checkSize);
+    window.removeEventListener('resize', this.checkSize);
   }
 
   render() {
     return (
-      <div ref={node => {
-        this.container = node;
-      }}>
+      <div
+        ref={node => {
+          this.container = node;
+        }}
+      >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
             {this.props.dataStructures}
