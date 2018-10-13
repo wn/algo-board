@@ -1,27 +1,25 @@
 import React from 'react';
-import { Circle, Group, Shape, Text } from 'react-konva';
-import Konva from 'konva';
+import { Circle, Group } from 'react-konva';
 
-import LLNode from './LLNode'
-import EditableText from './EditableText'
+import EditableText from './EditableText';
 
 export default class GraphNode extends React.Component {
-
   state = {
     color: 'black',
+    text: 'null',
+    radius: 50,
     x: 0,
-    y: 0,
-    text: ""
+    y: 0
   };
 
   handleDragEnd() {
-    return (e) => {
+    return e => {
       this.setState({
         ...this.state,
         x: e.target.x(),
         y: e.target.y()
-      })
-    }
+      });
+    };
   }
 
   setText = () => {
@@ -29,29 +27,32 @@ export default class GraphNode extends React.Component {
     this.setState({
       text: newText
     });
-  }
+  };
 
   render(props) {
     /** Set default x and y as 0 */
-    const {x, y} = {
+    const { x, y } = {
       x: this.state.x,
       y: this.state.y,
-      ...props,
-    }
+      ...props
+    };
+
+    var diameter = 2 * this.state.radius;
 
     return (
-      <Group 
-        x={x}
+      <Group
+        x={
+          isNaN(this.props.displacement)
+            ? x
+            : x + this.props.displacement * diameter
+        }
         y={y}
         onDragEnd={this.handleDragEnd(this)}
+        onClick={this.setText}
         draggable
-        onClick={this.setText} >
-        <Circle
-          radius={50}
-          stroke={this.state.color}
-          shadowBlur={5}
-        />
-        <EditableText text={this.state.text} />
+      >
+        <Circle radius={this.state.radius} stroke={this.state.color} />
+        <EditableText text={this.props.text || this.state.text} />
       </Group>
     );
   }
