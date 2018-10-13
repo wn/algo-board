@@ -26,7 +26,6 @@ class Whiteboard extends Component {
   render() {
     const createDS = (dsName, props) => this.props.dss[dsName].component(props);
 
-    console.log(this.props);
     return (
       <div
         ref={node => {
@@ -35,15 +34,12 @@ class Whiteboard extends Component {
       >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
-            {Object.keys(this.props.dataStructures).map(
-              id => createDS(
-                this.props.dataStructures[id].structureName,
-                {
-                  ...this.props.dataStructures[id].shapeState, 
-                  key: id, 
-                  shapeId: id
-                }
-              )
+            {Object.keys(this.props.dataStructures).map(id =>
+              createDS(this.props.dataStructures[id].structureName, {
+                ...this.props.dataStructures[id].shapeState,
+                key: id,
+                shapeId: id
+              })
             )}
           </Layer>
         </Stage>
