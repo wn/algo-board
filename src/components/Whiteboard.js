@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
-import Konva from 'konva';
 import { Stage, Layer } from 'react-konva';
-import { connect } from "react-redux";
-
-
-// Data structures
-import LLNode from './data-structures/LLNode';
-import List from './data-structures/List';
-import GraphNode from './data-structures/GraphNode';
-import Hashtable from './data-structures/Hashtable';
-import Pointer from './data-structures/Pointer';
+import { connect } from 'react-redux';
 
 class Whiteboard extends Component {
   state = {
     stageWidth: window.innerHeight,
-    tailMove: {
-
-    },
-    headMove: {
-
-    }
+    tailMove: {},
+    headMove: {}
   };
 
   componentDidMount() {
@@ -39,7 +26,6 @@ class Whiteboard extends Component {
   }
 
   render() {
-    console.log(this.props);
     this.props.callTestAction();
     return (
       <div
@@ -48,10 +34,7 @@ class Whiteboard extends Component {
         }}
       >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
-          <Layer>
-            {this.props.dataStructures}
-            <Pointer />
-          </Layer>
+          <Layer>{this.props.dataStructures}</Layer>
         </Stage>
       </div>
     );
@@ -63,10 +46,13 @@ const mapStateToProps = state => {
   return { test: state.konva.test };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    callTestAction: () => dispatch({type: "TEST_ACTION", payload: 1})
-  }
-}
+    callTestAction: () => dispatch({ type: 'TEST_ACTION', payload: 1 })
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Whiteboard);
