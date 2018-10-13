@@ -7,14 +7,15 @@ import LLNode from './LLNode'
 export default class Node extends React.Component {
 
   state = {
-    color: 'black'
+    color: 'black',
+    text: 'node'
   };
 
   render(props) {
     /** Set default x and y as 0 */
     const {x, y} = {
-      x: 40,
-      y: 40,
+      x: 0,
+      y: 0,
       ...props,
     }
 
@@ -26,7 +27,7 @@ export default class Node extends React.Component {
         <Text
           x={x}
           y={y}
-          text={'asdf'}
+          text={this.state.text}
           fill={this.state.color}
         />
         <Circle
