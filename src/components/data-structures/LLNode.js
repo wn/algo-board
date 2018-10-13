@@ -6,19 +6,19 @@ import EditableText from './EditableText'
 
 class LLNode extends React.Component {
 
-  updateLineStart = e => {
-    this.setState({
+  updateLineStart = e =>
+    props.updateState({
+      ...props.shapeState,
       shapeSourceX: e.target.x(),
       shapeSourceY: e.target.y(),
     })
-  }
 
-  updateLineEnd = e => {
-    this.setState({
+  updateLineEnd = e =>
+    props.updateState({
+      ...props.shapeState,
       lineEndX: e.target.x(),
       lineEndY: e.target.y(),
     })
-  }
 
   render() {
     return (
@@ -49,15 +49,15 @@ class LLNode extends React.Component {
           <EditableText x={20} y={30}/>
         </Group>
         <Arrow
-          points={[this.state.shapeSourceX + 85, this.state.shapeSourceY + 35,
-            this.state.lineEndX, this.state.lineEndY]}
+          points={[shapeState.shapeSourceX + 85, shapeState.shapeSourceY + 35,
+            shapeState.lineEndX, shapeState.lineEndY]}
           stroke
           strokeWidth={4}
           fill
         />
         <Circle
-          x={this.state.lineEndX}
-          y={this.state.lineEndY}
+          x={shapeState.lineEndX}
+          y={shapeState.lineEndY}
           radius={10}
           draggable
           onDragMove={this.updateLineEnd}
