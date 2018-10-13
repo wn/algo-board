@@ -6,7 +6,6 @@ import './Sidebar.css';
 class SidebarItem extends React.Component {
   state = {
     placeholder: {
-      size: 'Please input the size',
       values: "Array input. E.g. '1, 2, 3, 4, 5'",
       keyValuePairs: "Key-Value Pairs. E.g. '1 2, 3 4, 5 6, 7 8'"
     }
