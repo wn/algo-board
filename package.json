@@ -10,6 +10,7 @@
     "react-dom": "^16.5.2",
     "react-flexbox-grid": "^2.1.2",
     "react-konva": "^16.5.2",
+    "react-redux": "^5.0.7",
     "react-scripts": "2.0.4",
     "redux": "^4.0.1"
   },
