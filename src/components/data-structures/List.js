@@ -5,14 +5,13 @@ import { Group } from 'react-konva';
 export default class List extends React.Component {
   state = {
     x: 0,
-    y: 0,
-    size: 10
+    y: 0
   };
 
   render() {
     return (
       <Group draggable>
-        {new Array(this.state.size).fill(null).map((val, index) => {
+        {new Array(this.props.num).fill(null).map((val, index) => {
           return (
             <SquareNode
               key={index}

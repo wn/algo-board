@@ -3,20 +3,25 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Whiteboard from './components/Whiteboard';
+import List from './components/data-structures/List';
+import LLNode from './components/data-structures/LLNode';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.dss = [
-      { name: "Array", image: "" },
-      { name: "LLNode", image: "" },
-      { name: "TreeNode", image: "" },
-      { name: "GraphNode", image: "" }
-    ];
+    this.dss = {
+      "List":   { propAttrs: ["num"], component: (props) => <List {...props} /> },
+      "LLNode": { propAttrs: [], component: (props) => <LLNode {...props} /> },
+    };
+  }
+
+  state = {
+    dataStructures: []
   }
   
-  createDS = (dsName) => {
-    console.log(dsName);
+  createDS = (dsName, props) => {
+    props.num = parseInt(props.num);
+    this.setState({ dataStructures: [...this.state.dataStructures, this.dss[dsName].component(props)] });
   }
 
   render() {
@@ -24,7 +29,7 @@ class App extends Component {
       <Grid fluid>
         <Row>
           <Col xs={9}>
-            <Whiteboard />
+            <Whiteboard dataStructures={this.state.dataStructures}/>
           </Col>
           <Col xs={3}>
             <Sidebar dss={this.dss} createDS={this.createDS}/>
