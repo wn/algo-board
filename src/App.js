@@ -5,13 +5,17 @@ import Sidebar from './components/Sidebar';
 import Whiteboard from './components/Whiteboard';
 import List from './components/data-structures/List';
 import LLNode from './components/data-structures/LLNode';
+import GraphNode from './components/data-structures/GraphNode';
+import Hashtable from './components/data-structures/Hashtable';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.dss = {
-      "List":   { propAttrs: ["num"], component: (props) => <List {...props} /> },
+      "List":   { propAttrs: ["size"], component: (props) => <List {...props} /> },
       "LLNode": { propAttrs: [], component: (props) => <LLNode {...props} /> },
+      "GraphNode": { propAttrs: [], component:  (props) => <GraphNode {...props} /> },
+      "Hashtable": { propAttrs: ["size"], component: (props) => <Hashtable {...props} /> },
     };
   }
 
@@ -20,7 +24,7 @@ class App extends Component {
   }
   
   createDS = (dsName, props) => {
-    props.num = parseInt(props.num);
+    props.size = parseInt(props.size);
     this.setState({ dataStructures: [...this.state.dataStructures, this.dss[dsName].component(props)] });
   }
 
