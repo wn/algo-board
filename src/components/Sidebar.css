@@ -1,0 +1,35 @@
+.sidebar {
+  background-color: #f16664;
+  height: 100%;
+  width: 100%;
+  margin-left: -18px;
+  border-style: solid;
+}
+
+.header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 15px;
+  font-family: monospace;
+}
+
+.DS-list {
+  background-color: #f16664;
+  padding: 20px;
+  border-color: black;
+}
+
+.DS-input {
+  padding: 20px;
+}
+
+.md-form {
+  padding-bottom: 20px;
+}
+
+.DS-button {
+  font-size: 20px !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}

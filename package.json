@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "konva": "^2.4.2",
+    "mdbreact": "^4.8.1",
     "react": "^16.5.2",
+    "react-bootstrap": "^0.32.4",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.1",
     "react-dom": "^16.5.2",

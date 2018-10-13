@@ -12,7 +12,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.dss = {
-      List: { propAttrs: ["size", "values"], component: props => <List {...props} /> },
+      List: {
+        propAttrs: ['size', 'values'],
+        component: props => <List {...props} />
+      },
       LLNode: { propAttrs: [], component: props => <LLNode {...props} /> },
       GraphNode: {
         propAttrs: [],
@@ -50,13 +53,13 @@ class App extends Component {
 
   render() {
     return (
-      <Grid fluid>
+      <Grid className={'whiteboard'} fluid>
         <Row>
-          <Col xs={9}>
-            <Whiteboard dataStructures={this.state.dataStructures} />
-          </Col>
           <Col xs={3}>
             <Sidebar dss={this.dss} createDS={this.createDS} />
+          </Col>
+          <Col xs={9}>
+            <Whiteboard dataStructures={this.state.dataStructures} />
           </Col>
         </Row>
       </Grid>
