@@ -34,12 +34,16 @@ class App extends Component {
   };
 
   createDS = (dsName, props) => {
-    this.setState({
-      dataStructures: [
-        ...this.state.dataStructures,
-        this.dss[dsName].component(props)
-      ]
-    });
+    if (!this.props.values) {
+      alert(`Please fill in values for ${dsName}.`);
+    } else {
+      this.setState({
+        dataStructures: [
+          ...this.state.dataStructures,
+          this.dss[dsName].component(props)
+        ]
+      });
+    }
   };
 
   render() {
