@@ -7,14 +7,18 @@ import EditableText from './EditableText'
 class LLNode extends React.Component {
 
   updateLineStart = e =>
-    this.props.updateState({
-      ...this.props.shapeState,
-      shapeSourceX: e.target.x(),
-      shapeSourceY: e.target.y(),
-    })
+    this.props.updateState(
+      this.props.shapeId,
+      {
+        ...this.props.shapeState,
+        shapeSourceX: e.target.x(),
+        shapeSourceY: e.target.y(),
+      })
 
   updateLineEnd = e =>
-    this.props.updateState({
+    this.props.updateState(
+      this.props.shapeId,
+      {
       ...this.props.shapeState,
       lineEndX: e.target.x(),
       lineEndY: e.target.y(),
