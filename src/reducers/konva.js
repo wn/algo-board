@@ -67,6 +67,28 @@ export default function(state = initialState, action) {
         }
       };
     }
+    case "CONNECT_NODES": {
+      const {source, dest} = action.payload;
+      return {
+        ...state,
+        associations: {
+          pointingTo: {
+            ...state.associations.pointingTo,
+            [dest]: {
+              ...state.associations.pointingTo[dest],
+              [source]: true,
+            }
+          },
+          pointingFrom: {
+            ...state.associations.pointingFrom,
+            [source]: {
+              ...state.associations.pointingFrom[source],
+              [dest]: true,
+            }
+          }
+        }
+      }
+    }
     default:
       return state;
   }
