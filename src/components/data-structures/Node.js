@@ -24,10 +24,14 @@ export default class Node extends React.Component {
         y={y}
         draggable>
         <Text
+          x={x}
+          y={y}
           text={'asdf'}
           fill={this.state.color}
         />
         <Circle
+          x={x}
+          y={y}
           radius={50}
           stroke={this.state.color}
           shadowBlur={5}
