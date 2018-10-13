@@ -40,7 +40,7 @@ class App extends Component {
 
   createDS = (dsName, props) => {
     var inputDS = ['List', 'GraphList', 'Hashtable'];
-    if (inputDS.includes(dsName) && !this.props.values) {
+    if (inputDS.includes(dsName) && !props.values) {
       alert(`Please fill in values for ${dsName}.`);
     } else {
       this.setState({
