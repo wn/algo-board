@@ -1,7 +1,7 @@
-import React from "react";
-import { Group, Rect } from "react-konva";
+import React from 'react';
+import { Group, Rect } from 'react-konva';
 
-import EditableText from "./EditableText";
+import EditableText from './EditableText';
 
 export default class Node extends React.Component {
   render() {
@@ -12,7 +12,7 @@ export default class Node extends React.Component {
           y={this.props.y}
           width={50}
           height={50}
-          stroke={"black"}
+          stroke={'black'}
           strokeWidth={4}
         />
         <EditableText

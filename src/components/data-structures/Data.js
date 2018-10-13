@@ -1,5 +1,5 @@
-import React from "react";
-import { Rect } from "react-konva";
+import React from 'react';
+import { Rect } from 'react-konva';
 
 export default class Data extends React.Component {
   render() {
@@ -9,7 +9,7 @@ export default class Data extends React.Component {
         y={this.props.y}
         width={200}
         height={50}
-        stroke={"black"}
+        stroke={'black'}
         strokeWidth={4}
       />
     );

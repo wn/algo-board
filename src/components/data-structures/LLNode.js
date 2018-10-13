@@ -1,34 +1,37 @@
-import React from "react";
-import { Arrow, Circle, Group, Shape } from "react-konva";
+import React from 'react';
+import { Arrow, Circle, Group, Shape } from 'react-konva';
 
-import EditableText from "./EditableText";
+import EditableText from './EditableText'
 
 export default class LLNode extends React.Component {
-  state = {
+  state ={
     shapeSourceX: 0,
     shapeSourceY: 0,
     lineEndX: 150,
     lineEndY: 35
-  };
+  }
 
   updateLineStart = e => {
     this.setState({
       shapeSourceX: e.target.x(),
-      shapeSourceY: e.target.y()
-    });
-  };
+      shapeSourceY: e.target.y(),
+    })
+  }
 
   updateLineEnd = e => {
     this.setState({
       lineEndX: e.target.x(),
-      lineEndY: e.target.y()
-    });
-  };
+      lineEndY: e.target.y(),
+    })
+  }
 
   render() {
     return (
       <React.Fragment>
-        <Group draggable onDragMove={this.updateLineStart}>
+        <Group
+          draggable
+          onDragMove={this.updateLineStart}
+        >
           <Shape
             sceneFunc={(context, shape) => {
               context.beginPath();
@@ -48,15 +51,11 @@ export default class LLNode extends React.Component {
             stroke="black"
             strokeWidth={4}
           />
-          <EditableText x={20} y={30} />
+          <EditableText x={20} y={30}/>
         </Group>
         <Arrow
-          points={[
-            this.state.shapeSourceX + 85,
-            this.state.shapeSourceY + 35,
-            this.state.lineEndX,
-            this.state.lineEndY
-          ]}
+          points={[this.state.shapeSourceX + 85, this.state.shapeSourceY + 35,
+            this.state.lineEndX, this.state.lineEndY]}
           stroke
           strokeWidth={4}
           fill
