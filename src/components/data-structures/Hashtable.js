@@ -9,19 +9,22 @@ export default class Hashtable extends React.Component {
   };
 
   render() {
-    const keyValuePairs = this.props.keyValuePairs
+    const keyValuePairs = new Array(this.props.size).fill(null);
+    this.props.keyValuePairs
       .split(", ")
       .map(x => x.trim())
       .map(x => x.split(" "))
+      .map((p, index) => { keyValuePairs[index] = p; });
     return (
       <Group draggable>
-        {new Array(this.props.size).fill(null).map((val, index) => {
+        {keyValuePairs.map((pair, index) => {
           return (
             <Row
               key={index}
               displacement={index}
               x={this.state.startX}
               y={this.state.startY}
+              keyValuePair={pair}
             />
           );
         })}
