@@ -6,20 +6,20 @@ import EditableText from './EditableText';
 export default class GraphNode extends React.Component {
   state = {
     color: 'black',
-    text: 'node',
+    text: 'null',
     radius: 50,
-    x: 50,
-    y: 50
+    x: 0,
+    y: 0
   };
 
   handleDragEnd() {
-    return (e) => {
+    return e => {
       this.setState({
         ...this.state,
         x: e.target.x(),
         y: e.target.y()
-      })
-    }
+      });
+    };
   }
 
   setText = () => {
@@ -27,7 +27,7 @@ export default class GraphNode extends React.Component {
     this.setState({
       text: newText
     });
-  }
+  };
 
   render(props) {
     /** Set default x and y as 0 */
@@ -37,12 +37,22 @@ export default class GraphNode extends React.Component {
       ...props
     };
 
-    var diameter = this.state.radius * 2;
+    var diameter = 2 * this.state.radius;
 
     return (
-      <Group x={x + this.props.displacement * diameter} y={y} onDragEnd={this.handleDragEnd(this)} onClick={this.setText} draggable>
+      <Group
+        x={
+          isNaN(this.props.displacement)
+            ? x
+            : x + this.props.displacement * diameter
+        }
+        y={y}
+        onDragEnd={this.handleDragEnd(this)}
+        onClick={this.setText}
+        draggable
+      >
         <Circle radius={this.state.radius} stroke={this.state.color} />
-        <EditableText text={this.props.text} />
+        <EditableText text={this.props.text || this.state.text} />
       </Group>
     );
   }
