@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 class Whiteboard extends Component {
   state = {
     stageWidth: window.innerHeight,
-    tailMove: {},
-    headMove: {}
   };
 
   componentDidMount() {
@@ -26,7 +24,22 @@ class Whiteboard extends Component {
   }
 
   render() {
-    this.props.callTestAction();
+
+    const createDS = (dsName, props) => {
+      var inputDS = ['List', 'Hashtable'];
+      var input = props.size;
+      if (
+        inputDS.includes(dsName) &&
+        (isNaN(input) || input <= 0 || input >= 25)
+      ) {
+        console.log('Input is not a value from 0 to 25');
+      } else {
+        props.size = parseInt(props.size);
+        return this.props.dss[dsName].component(props);
+      }
+    };
+
+    console.log(this.props);
     return (
       <div
         ref={node => {
@@ -34,7 +47,14 @@ class Whiteboard extends Component {
         }}
       >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
-          <Layer>{this.props.dataStructures}</Layer>
+          <Layer>
+            {Object.keys(this.props.dataStructures).map(
+              id => createDS(
+                this.props.dataStructures[id].structureName,
+                {...this.props.dataStructures[id].shapeState, key: id}
+              )
+            )}
+          </Layer>
         </Stage>
       </div>
     );
@@ -42,17 +62,10 @@ class Whiteboard extends Component {
 }
 
 /** Access items from state.konva here */
-const mapStateToProps = state => {
-  return { test: state.konva.test };
-};
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
+  dataStructures: state.konva.dataStructures,
+  associations: state.konva.associations,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    callTestAction: () => dispatch({ type: 'TEST_ACTION', payload: 1 })
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Whiteboard);
+export default connect(mapStateToProps)(Whiteboard);

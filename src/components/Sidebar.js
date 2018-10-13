@@ -1,29 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SidebarItem from './SidebarItem';
 import './Sidebar.css';
 import { ListGroup } from 'react-bootstrap';
 
 class Sidebar extends React.Component {
+  counter = 0;
+
   render() {
+    const {addStructure} = this.props;
     return (
       <div className={'sidebar'}>
         <p className={'header'}>Algo board</p>
         <ListGroup>
-          {Object.keys(this.props.dss).map(dsName => {
-            const { propAttrs } = this.props.dss[dsName];
-            return (
-              <SidebarItem
-                key={dsName}
-                dsName={dsName}
-                propAttrs={propAttrs}
-                createDS={this.props.createDS}
-              />
-            );
-          })}
+          {
+            Object.keys(this.props.dss).map((dsName) => {
+              const { propAttrs } = this.props.dss[dsName];
+              return (
+                <SidebarItem
+                  key={dsName}
+                  dsName={dsName}
+                  propAttrs={propAttrs}
+                  createDS={(otherStates) => addStructure(otherStates, dsName, this.counter++)}
+                />
+              );
+            })
+          }
         </ListGroup>
       </div>
     );
   }
 }
 
-export default Sidebar;
+const mapStateToProps = state => {};
+const mapDispatchToProps = dispatch => ({
+  addStructure: (shapeState, structureName, id) => dispatch({
+    type: "ADD_STRUCTURE", payload: {shapeState, structureName, id: id.toString()}
+  })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
