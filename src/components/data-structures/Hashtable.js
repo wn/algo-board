@@ -9,6 +9,10 @@ export default class Hashtable extends React.Component {
   };
 
   render() {
+    const keyValuePairs = this.props.keyValuePairs
+      .split(", ")
+      .map(x => x.trim())
+      .map(x => x.split(" "))
     return (
       <Group draggable>
         {new Array(this.props.size).fill(null).map((val, index) => {
