@@ -36,7 +36,8 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   addStructure: (shapeState, structureName, id) => {
     var inputDS = ['List', 'GraphList', 'Hashtable'];
-    if (1 == 2) {
+    if (false) {
+      // TODO
       alert(`Please fill in values for ${structureName}.`);
     } else {
       dispatch({
