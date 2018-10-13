@@ -1,20 +1,50 @@
 import React from 'react';
-import { Circle } from 'react-konva';
+import { Circle, Group, Shape, Text } from 'react-konva';
+import Konva from 'konva';
+
+import LLNode from './LLNode'
+import EditableText from './EditableText'
 
 export default class GraphNode extends React.Component {
+
   state = {
-    color: 'red'
+    color: 'black',
+    text: 'node',
+    x: 0,
+    y: 0
   };
 
-  render() {
+  handleDragEnd() {
+    return (e) => {
+      this.setState({
+        ...this.state,
+        x: e.target.x(),
+        y: e.target.y()
+      })
+    }
+  }
+
+  render(props) {
+    /** Set default x and y as 0 */
+    const {x, y} = {
+      x: this.state.x,
+      y: this.state.y,
+      ...props,
+    }
+
     return (
-      <Circle
-        radius={50}
-        fill={this.state.color}
-        shadowBlur={5}
-        onClick={this.handleClick}
-        draggable
-      />
+      <Group 
+        x={x}
+        y={y}
+        onDragEnd={this.handleDragEnd(this)}
+        draggable>
+        <Circle
+          radius={50}
+          stroke={this.state.color}
+          shadowBlur={5}
+        />
+        <EditableText />
+      </Group>
     );
   }
 }
