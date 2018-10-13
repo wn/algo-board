@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class Whiteboard extends Component {
   state = {
-    stageWidth: window.innerHeight,
+    stageWidth: window.innerHeight
   };
 
   componentDidMount() {
@@ -24,18 +24,12 @@ class Whiteboard extends Component {
   }
 
   render() {
-
     const createDS = (dsName, props) => {
-      var inputDS = ['List', 'Hashtable'];
-      var input = props.size;
-      if (
-        inputDS.includes(dsName) &&
-        (isNaN(input) || input <= 0 || input >= 25)
-      ) {
-        console.log('Input is not a value from 0 to 25');
+      var inputDS = ['List', 'GraphList', 'Hashtable'];
+      if (inputDS.includes(dsName) && !props.values) {
+        alert(`Please fill in values for ${dsName}.`);
       } else {
-        props.size = parseInt(props.size);
-        return this.props.dss[dsName].component(props);
+        return this.dss[dsName].component(props);
       }
     };
 
@@ -48,11 +42,11 @@ class Whiteboard extends Component {
       >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
-            {Object.keys(this.props.dataStructures).map(
-              id => createDS(
-                this.props.dataStructures[id].structureName,
-                {...this.props.dataStructures[id].shapeState, key: id}
-              )
+            {Object.keys(this.props.dataStructures).map(id =>
+              createDS(this.props.dataStructures[id].structureName, {
+                ...this.props.dataStructures[id].shapeState,
+                key: id
+              })
             )}
           </Layer>
         </Stage>
@@ -65,7 +59,7 @@ class Whiteboard extends Component {
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
   dataStructures: state.konva.dataStructures,
-  associations: state.konva.associations,
+  associations: state.konva.associations
 });
 
 export default connect(mapStateToProps)(Whiteboard);
