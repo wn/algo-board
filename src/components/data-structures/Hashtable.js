@@ -24,7 +24,7 @@ export default class Hashtable extends React.Component {
               displacement={index}
               x={this.state.startX}
               y={this.state.startY}
-              keyValuePair={pair}
+              pair={pair}
             />
           );
         })}
