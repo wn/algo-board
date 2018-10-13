@@ -2,10 +2,6 @@ import React from 'react';
 import { Rect } from 'react-konva';
 
 export default class Node extends React.Component {
-  state = {
-    color: 'black'
-  };
-
   render() {
     return (
       <Rect
@@ -13,7 +9,7 @@ export default class Node extends React.Component {
         y={this.props.y}
         width={50}
         height={50}
-        stroke={this.state.color}
+        stroke={'black'}
         strokeWidth={4}
         onDragMove={this.props.dragHandle}
         draggable
