@@ -15,7 +15,7 @@ export default class EditableText extends React.Component {
       const newText = prompt('Please enter some new text', text);
       this.setState({
         ...this.state,
-        text: newText.trim() ? newText.trim() : "null"
+        text: !newText ? "null" : newText.trim() ? newText.trim() : "null"
       });
     }
   }
