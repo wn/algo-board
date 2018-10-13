@@ -16,6 +16,20 @@ export default class Node extends React.Component {
   onTextClick (text) {
     return (e) => {
       const newText = prompt('Please enter some new text', text);
+      this.setState({
+        ...this.state,
+        text: newText
+      });
+    }
+  }
+
+  handleDragEnd() {
+    return (e) => {
+      this.setState({
+        ...this.state,
+        x: e.target.x(),
+        y: e.target.y()
+      })
     }
   }
 
