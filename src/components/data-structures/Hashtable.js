@@ -5,14 +5,13 @@ import { Group } from 'react-konva';
 export default class Hashtable extends React.Component {
   state = {
     startX: 20,
-    startY: 20,
-    size: 10
+    startY: 20
   };
 
   render() {
     return (
       <Group draggable>
-        {new Array(this.state.size).fill(null).map((val, index) => {
+        {new Array(this.props.size).fill(null).map((val, index) => {
           return (
             <Row
               key={index}

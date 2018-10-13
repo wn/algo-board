@@ -11,7 +11,7 @@ export default class List extends React.Component {
   render() {
     return (
       <Group draggable>
-        {new Array(this.props.num).fill(null).map((val, index) => {
+        {new Array(this.props.size).fill(null).map((val, index) => {
           return (
             <SquareNode
               key={index}
