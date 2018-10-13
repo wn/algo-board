@@ -7,6 +7,7 @@ import LLNode from './data-structures/LLNode';
 import List from './data-structures/List';
 import GraphNode from './data-structures/GraphNode';
 import Hashtable from './data-structures/Hashtable';
+import Pointer from './data-structures/Pointer';
 
 class Whiteboard extends Component {
   state = {
