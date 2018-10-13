@@ -41,11 +41,7 @@ export default class GraphNode extends React.Component {
 
     return (
       <Group
-        x={
-          isNaN(this.props.displacement)
-            ? x
-            : x + this.props.displacement * diameter
-        }
+        x={x === 0 ? x + this.props.displacement * diameter : x}
         y={y}
         onDragEnd={this.handleDragEnd(this)}
         onClick={this.setText}
