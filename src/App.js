@@ -23,10 +23,10 @@ class App extends Component {
     return (
       <Grid fluid>
         <Row>
-          <Col xs={6}>
+          <Col xs={9}>
             <Whiteboard />
           </Col>
-          <Col xs={6}>
+          <Col xs={3}>
             <Sidebar dss={this.dss} createDS={this.createDS}/>
           </Col>
         </Row>

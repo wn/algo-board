@@ -14,7 +14,7 @@ class Whiteboard extends Component {
 
   componentDidMount() {
     this.checkSize();
-    window.addEventListener("resize", this.checkSize);
+    window.addEventListener('resize', this.checkSize);
   }
 
   checkSize = () => {
@@ -25,14 +25,16 @@ class Whiteboard extends Component {
   };
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.checkSize);
+    window.removeEventListener('resize', this.checkSize);
   }
 
   render() {
     return (
-      <div ref={node => {
-        this.container = node;
-      }}>
+      <div
+        ref={node => {
+          this.container = node;
+        }}
+      >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
             <LLNode />
