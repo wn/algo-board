@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Whiteboard from './components/Whiteboard';
@@ -27,7 +28,7 @@ class App extends Component {
         component: props => <GraphList {...props} />
       },
       Hashtable: {
-        propAttrs: ['size'],
+        propAttrs: ['size', 'keyValuePairs'],
         component: props => <Hashtable {...props} />
       }
     };

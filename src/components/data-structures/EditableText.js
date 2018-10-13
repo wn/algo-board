@@ -29,11 +29,10 @@ export default class EditableText extends React.Component {
       <Text
         x={x}
         y={y}
-        text={this.props.text || this.state.text}
+        text={this.props.text}
         align="center"
         verticalAlign="middle"
         fill={'black'}
-        onClick={this.onTextClick(this.state.text)}
       />
     );
   }

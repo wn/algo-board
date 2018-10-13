@@ -6,7 +6,7 @@ export default class Row extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {new Array(2).fill(null).map((val, index) => {
+        {(this.props.pair || [undefined, undefined]).map((val, index) => {
           return (
             <>
               <Data
@@ -17,6 +17,7 @@ export default class Row extends React.Component {
               <EditableText
                 x={this.props.x + index * 200 + 50}
                 y={this.props.y + this.props.displacement * 50 + 20}
+                text={val}
               />
             </>
           );

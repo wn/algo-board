@@ -12,6 +12,23 @@ export default class GraphNode extends React.Component {
     y: 50
   };
 
+  handleDragEnd() {
+    return (e) => {
+      this.setState({
+        ...this.state,
+        x: e.target.x(),
+        y: e.target.y()
+      })
+    }
+  }
+
+  setText = () => {
+    const newText = prompt('Please enter some new text', this.state.text);
+    this.setState({
+      text: newText
+    });
+  }
+
   render(props) {
     /** Set default x and y as 0 */
     const { x, y } = {
@@ -23,7 +40,7 @@ export default class GraphNode extends React.Component {
     var diameter = this.state.radius * 2;
 
     return (
-      <Group x={x + this.props.displacement * diameter} y={y} draggable>
+      <Group x={x + this.props.displacement * diameter} y={y} onDragEnd={this.handleDragEnd(this)} onClick={this.setText} draggable>
         <Circle radius={this.state.radius} stroke={this.state.color} />
         <EditableText text={this.props.text} />
       </Group>
