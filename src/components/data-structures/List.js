@@ -11,7 +11,6 @@ export default class List extends React.Component {
     return (
       <Shape
         sceneFunc={(context, shape) => {
-          console.log(this.props.num);
           context.beginPath();
           for (var i = 0; i < this.props.num; i++) {
             context.moveTo(10 + 50 * i, 10);

@@ -8,7 +8,9 @@ export default class Node extends React.Component {
 
   state = {
     color: 'black',
-    text: 'node'
+    text: 'node',
+    x: 0,
+    y: 0
   };
 
   onTextClick (text) {
@@ -20,22 +22,23 @@ export default class Node extends React.Component {
   render(props) {
     /** Set default x and y as 0 */
     const {x, y} = {
-      x: 0,
-      y: 0,
+      x: this.state.x,
+      y: this.state.y,
       ...props,
     }
 
     return (
-      <Group x={x} y={y} onClick={this.onTextClick(this.state.text)} draggable>
+      <Group 
+        x={x}
+        y={y}
+        onClick={this.onTextClick(this.state.text)} 
+        onDragEnd={this.handleDragEnd(this)}
+        draggable>
         <Text
-          x={x}
-          y={y}
           text={this.state.text}
           fill={this.state.color}
         />
         <Circle
-          x={x}
-          y={y}
           radius={50}
           stroke={this.state.color}
           shadowBlur={5}
