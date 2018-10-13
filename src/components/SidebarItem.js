@@ -32,7 +32,7 @@ class SidebarItem extends React.Component {
         })}
         <Button
           className={'DS-button'}
-          onClick={() => this.props.createDS(this.props.dsName, this.state)}
+          onClick={() => this.props.createDS(this.state)}
         >
           {this.props.dsName}
         </Button>

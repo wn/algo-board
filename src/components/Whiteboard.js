@@ -26,7 +26,7 @@ class Whiteboard extends Component {
   }
 
   render() {
-    this.props.callTestAction();
+    console.log(this.props);
     return (
       <div
         ref={node => {
@@ -48,9 +48,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    callTestAction: () => dispatch({ type: 'TEST_ACTION', payload: 1 })
-  };
-};
+    addStructure: (structureName, id) => dispatch({
+      type: "ADD_STRUCTURE", payload: {structureName, id}
+    })
+  }
+}
 
 export default connect(
   mapStateToProps,
