@@ -1,15 +1,15 @@
 import React from 'react';
-import SquareNode from './SquareNode';
+import GraphNode from './GraphNode';
 import { Group } from 'react-konva';
 
-export default class List extends React.Component {
+export default class GraphList extends React.Component {
   state = {
     x: 0,
     y: 0
   };
 
   render() {
-    const values = [];
+    const values = new Array(this.props.size).fill(null);
     this.props.values
       .split(',')
       .map(x => x.trim())
@@ -21,7 +21,7 @@ export default class List extends React.Component {
       <Group draggable>
         {values.map((val, index) => {
           return (
-            <SquareNode
+            <GraphNode
               key={index}
               displacement={index}
               x={this.state.x}

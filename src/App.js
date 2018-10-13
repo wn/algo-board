@@ -7,6 +7,7 @@ import Whiteboard from './components/Whiteboard';
 import List from './components/data-structures/List';
 import LLNode from './components/data-structures/LLNode';
 import GraphNode from './components/data-structures/GraphNode';
+import GraphList from './components/data-structures/GraphList';
 import Hashtable from './components/data-structures/Hashtable';
 
 class App extends Component {
@@ -21,6 +22,10 @@ class App extends Component {
       GraphNode: {
         propAttrs: [],
         component: props => <GraphNode {...props} />
+      },
+      GraphList: {
+        propAttrs: ['size', 'values'],
+        component: props => <GraphList {...props} />
       },
       Hashtable: {
         propAttrs: ['keyValuePairs'],
