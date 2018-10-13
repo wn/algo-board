@@ -1,6 +1,7 @@
 import React from 'react';
 import { Rect } from 'react-konva';
 import Data from './Data';
+import EditableText from './EditableText';
 
 export default class Row extends React.Component {
   render() {
@@ -8,11 +9,17 @@ export default class Row extends React.Component {
       <React.Fragment>
         {new Array(2).fill(null).map((val, index) => {
           return (
-            <Data
-              key={index}
-              x={this.props.x + index * 200}
-              y={this.props.y + this.props.displacement * 50}
-            />
+            <>
+              <Data
+                key={index}
+                x={this.props.x + index * 200}
+                y={this.props.y + this.props.displacement * 50}
+              />
+              <EditableText
+                x={this.props.x + index * 200 + 50}
+                y={this.props.y + this.props.displacement * 50 + 20}
+              />
+            </>
           );
         })}
       </React.Fragment>
