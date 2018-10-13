@@ -29,7 +29,7 @@ export default class LLNode extends React.Component {
         <Circle
           x={this.state.shapeSourceX}
           y={this.state.shapeSourceY}
-          radius={12}
+          radius={8}
           fill
           draggable
           onDragMove={this.updateLineStart}
