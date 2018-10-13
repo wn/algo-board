@@ -51,7 +51,11 @@ export default class GraphNode extends React.Component {
         onClick={this.setText}
         draggable
       >
-        <Circle radius={this.state.radius} stroke={this.state.color} />
+        <Circle
+          radius={this.state.radius}
+          strokeWidth={4}
+          stroke={this.state.color}
+        />
         <EditableText text={this.props.text || this.state.text} />
       </Group>
     );
