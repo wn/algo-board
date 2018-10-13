@@ -16,11 +16,7 @@ export default class Row extends React.Component {
                 y={this.props.y + this.props.displacement * 50}
               />
               <EditableText
-                x={this.props.x + 50}
-                y={this.props.y + this.props.displacement * 50 + 20}
-              />
-              <EditableText
-                x={this.props.x + 250}
+                x={this.props.x + index * 200 + 50}
                 y={this.props.y + this.props.displacement * 50 + 20}
               />
             </>
