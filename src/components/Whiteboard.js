@@ -11,7 +11,13 @@ import Pointer from './data-structures/Pointer';
 
 class Whiteboard extends Component {
   state = {
-    stageWidth: window.innerHeight
+    stageWidth: window.innerHeight,
+    tailMove: {
+
+    },
+    headMove: {
+
+    }
   };
 
   componentDidMount() {
@@ -40,6 +46,7 @@ class Whiteboard extends Component {
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
             {this.props.dataStructures}
+            <Pointer />
           </Layer>
         </Stage>
       </div>

@@ -9,9 +9,9 @@ export default class GraphNode extends React.Component {
 
   state = {
     color: 'black',
-    text: 'node',
     x: 0,
-    y: 0
+    y: 0,
+    text: ""
   };
 
   handleDragEnd() {
@@ -22,6 +22,13 @@ export default class GraphNode extends React.Component {
         y: e.target.y()
       })
     }
+  }
+
+  setText = () => {
+    const newText = prompt('Please enter some new text', this.state.text);
+    this.setState({
+      text: newText
+    });
   }
 
   render(props) {
@@ -37,13 +44,14 @@ export default class GraphNode extends React.Component {
         x={x}
         y={y}
         onDragEnd={this.handleDragEnd(this)}
-        draggable>
+        draggable
+        onClick={this.setText} >
         <Circle
           radius={50}
           stroke={this.state.color}
           shadowBlur={5}
         />
-        <EditableText />
+        <EditableText text={this.state.text} />
       </Group>
     );
   }

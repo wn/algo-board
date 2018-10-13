@@ -7,18 +7,7 @@ export default class EditableText extends React.Component {
   state = {
     x: 0,
     y: 0,
-    text: 'null',
   };
-
-  onTextClick (text) {
-    return (e) => {
-      const newText = prompt('Please enter some new text', text);
-      this.setState({
-        ...this.state,
-        text: !newText ? "null" : newText.trim() ? newText.trim() : "null"
-      });
-    }
-  }
 
   render() {
     const {x, y} = {
@@ -31,11 +20,10 @@ export default class EditableText extends React.Component {
       <Text
         x={x}
         y={y}
-        text={this.props.text || this.state.text}
+        text={this.props.text}
         align="center"
         verticalAlign="middle"
         fill={'black'}
-        onClick={this.onTextClick(this.state.text)}
       />
     );
   }
