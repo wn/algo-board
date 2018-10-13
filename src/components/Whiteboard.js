@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Konva from 'konva';
-import { render } from 'react-dom';
 import { Stage, Layer, Text } from 'react-konva';
 
-class App extends Component {
+class Whiteboard extends Component {
   state = {
     text1: 'black',
     text2: 'black',
@@ -63,5 +62,5 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'));
+export default Whiteboard;
 
