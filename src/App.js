@@ -12,35 +12,51 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.dss = {
-      "List":   { propAttrs: ["size"], component: (props) => <List {...props} /> },
-      "LLNode": { propAttrs: [], component: (props) => <LLNode {...props} /> },
-      "GraphNode": { propAttrs: [], component:  (props) => <GraphNode {...props} /> },
-      "Hashtable": { propAttrs: ["size"], component: (props) => <Hashtable {...props} /> },
+      List: { propAttrs: ['size'], component: props => <List {...props} /> },
+      LLNode: { propAttrs: [], component: props => <LLNode {...props} /> },
+      GraphNode: {
+        propAttrs: [],
+        component: props => <GraphNode {...props} />
+      },
+      Hashtable: {
+        propAttrs: ['size'],
+        component: props => <Hashtable {...props} />
+      }
     };
   }
 
   state = {
     dataStructures: []
-  }
-  
+  };
+
   createDS = (dsName, props) => {
-    props.size = parseInt(props.size);
-    this.setState({ dataStructures: [...this.state.dataStructures, this.dss[dsName].component(props)] });
-  }
+    var input = props.size;
+    if (isNaN(input) || input <= 0 || input >= 25) {
+      console.log('Input is not a value from 0 to 25');
+    } else {
+      props.size = parseInt(props.size);
+      this.setState({
+        dataStructures: [
+          ...this.state.dataStructures,
+          this.dss[dsName].component(props)
+        ]
+      });
+    }
+  };
 
   render() {
     return (
       <Grid fluid>
         <Row>
           <Col xs={9}>
-            <Whiteboard dataStructures={this.state.dataStructures}/>
+            <Whiteboard dataStructures={this.state.dataStructures} />
           </Col>
           <Col xs={3}>
-            <Sidebar dss={this.dss} createDS={this.createDS}/>
+            <Sidebar dss={this.dss} createDS={this.createDS} />
           </Col>
         </Row>
       </Grid>
-    )
+    );
   }
 }
 
