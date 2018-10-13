@@ -7,7 +7,8 @@ class SidebarItem extends React.Component {
   state = {
     placeholder: {
       values: "Array input. E.g. '1, 2, 3, 4, 5'",
-      keyValuePairs: "Key-Value Pairs. E.g. '1 2, 3 4, 5 6, 7 8'"
+      keyValuePairs: "Key-Value Pairs. E.g. '1 2, 3 4, 5 6, 7 8'",
+      graphValues: "Graph node input. E.g. '1, 2, 3, 4, 5'"
     }
   };
 

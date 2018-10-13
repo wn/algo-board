@@ -1,6 +1,5 @@
 import React from 'react';
 import GraphNode from './GraphNode';
-import { Group } from 'react-konva';
 import { connect } from 'react-redux';
 
 class GraphList extends React.Component {
@@ -8,8 +7,8 @@ class GraphList extends React.Component {
     const shapeState = this.props.shapeState;
 
     return (
-      <Group draggable>
-        {shapeState.values
+      <React.Fragment>
+        {shapeState.graphValues
           .split(',')
           .map(x => x.trim())
           .map((val, index) => {
@@ -23,7 +22,7 @@ class GraphList extends React.Component {
               />
             );
           })}
-      </Group>
+      </React.Fragment>
     );
   }
 }
