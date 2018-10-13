@@ -11,13 +11,13 @@ export default class Row extends React.Component {
             <>
               <Data
                 key={index}
-                x={this.props.x + index * 200}
-                y={this.props.y + this.props.displacement * 50}
+                x={index * 200}
+                y={this.props.displacement * 50}
               />
               <EditableText
                 key={val}
-                x={this.props.x + index * 200 + 50}
-                y={this.props.y + this.props.displacement * 50 + 20}
+                x={index * 200 + 50}
+                y={this.props.displacement * 50 + 20}
                 text={val}
               />
             </>
