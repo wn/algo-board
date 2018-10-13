@@ -13,7 +13,7 @@ export default class Hashtable extends React.Component {
     this.props.keyValuePairs
       .split(", ")
       .map(x => x.trim())
-      .map(x => x.split(" "))
+      .map(x => x.split(" ", 2))
       .map((p, index) => { keyValuePairs[index] = p; });
     return (
       <Group draggable>
