@@ -6,11 +6,7 @@ export default class Node extends React.Component {
   state = {
     color: 'red'
   };
-  // handleClick = () => {
-  //   this.setState({
-  //     color: Konva.Util.getRandomColor()
-  //   });
-  // };
+
   render() {
     return (
       <Circle
