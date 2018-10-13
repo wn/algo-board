@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
     this.dss = {
       List: {
-        propAttrs: ['size', 'values'],
+        propAttrs: ['values'],
         component: props => <List {...props} />
       },
       LLNode: { propAttrs: [], component: props => <LLNode {...props} /> },
@@ -28,7 +28,7 @@ class App extends Component {
         component: props => <GraphList {...props} />
       },
       Hashtable: {
-        propAttrs: ['size', 'keyValuePairs'],
+        propAttrs: ['keyValuePairs'],
         component: props => <Hashtable {...props} />
       }
     };
@@ -39,15 +39,9 @@ class App extends Component {
   };
 
   createDS = (dsName, props) => {
-    var inputDS = ['List', 'Hashtable'];
-    var input = props.size;
-    if (
-      inputDS.includes(dsName) &&
-      (isNaN(input) || input <= 0 || input >= 25)
-    ) {
-      console.log('Input is not a value from 0 to 25');
+    if (!this.props.values) {
+      alert(`Please fill in values for ${dsName}.`);
     } else {
-      props.size = parseInt(props.size);
       this.setState({
         dataStructures: [
           ...this.state.dataStructures,

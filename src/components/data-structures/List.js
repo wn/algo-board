@@ -9,7 +9,7 @@ export default class List extends React.Component {
   };
 
   render() {
-    const values = new Array(this.props.size).fill(null);
+    const values = [];
     this.props.values
       .split(',')
       .map(x => x.trim())
