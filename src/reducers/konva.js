@@ -8,12 +8,19 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    /**
+     * structureName - the name of the Shape to render
+     * shapeState - an object, possibly undefined, containing any number of properties
+     * x - the x-coord
+     * y - the y-coord
+     */
     case "ADD_STRUCTURE": {
       return {
         ...state,
         dataStructures: {
           ...state.dataStructures,
           [action.payload.id]: {
+            ...(action.payload.shapeState || {}),
             structureName: action.payload.structureName,
             x: 10,
             y: 10,
