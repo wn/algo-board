@@ -9,6 +9,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     /**
+     * id - the unique identifier for this shape
      * structureName - the name of the Shape to render
      * shapeState - an object, possibly undefined, containing any number of properties
      * x - the x-coord
