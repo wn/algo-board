@@ -12,7 +12,7 @@ export default class LLNode extends React.Component {
       <Shape
         sceneFunc={(context, shape) => {
           context.beginPath();
-          context.moveTo(10,10);
+          context.moveTo(10, 10);
           context.lineTo(60, 10);
           context.lineTo(60, 60);
           context.lineTo(10, 60);
