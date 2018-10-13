@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import Konva from 'konva';
-import { Stage, Layer } from 'react-konva';
+import { Stage, Layer, Text } from 'react-konva';
+
+// Data structures
 import LLNode from './data-structures/LLNode';
+import List from './data-structures/List';
+import Node from './data-structures/Node';
 
 class Whiteboard extends Component {
   state = {
@@ -30,7 +34,9 @@ class Whiteboard extends Component {
     return (
       <Stage width={window.innerWidth} height={window.innerHeight}>
         <Layer>
-          <LLNode/>
+          <LLNode />
+          <List num={5} />
+          <Node />
         </Layer>
       </Stage>
     );
@@ -38,4 +44,3 @@ class Whiteboard extends Component {
 }
 
 export default Whiteboard;
-
