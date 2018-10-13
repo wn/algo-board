@@ -29,6 +29,9 @@ export default class GraphNode extends React.Component {
     });
   };
 
+  spawnArrow = () => {
+  }
+
   render(props) {
     /** Set default x and y as 0 */
     const { x, y } = {
@@ -48,15 +51,18 @@ export default class GraphNode extends React.Component {
         }
         y={y}
         onDragEnd={this.handleDragEnd(this)}
-        onClick={this.setText}
         draggable
       >
         <Circle
           radius={this.state.radius}
           strokeWidth={4}
           stroke={this.state.color}
+          onClick={this.spawnArrow}
         />
-        <EditableText text={this.props.text || this.state.text} />
+        <EditableText 
+          text={this.props.text || this.state.text} 
+          onClick={this.setText}
+        />
       </Group>
     );
   }
