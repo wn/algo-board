@@ -19,7 +19,7 @@ class App extends Component {
         component: props => <GraphNode {...props} />
       },
       Hashtable: {
-        propAttrs: ['size'],
+        propAttrs: ['size', 'keyValuePairs'],
         component: props => <Hashtable {...props} />
       }
     };
