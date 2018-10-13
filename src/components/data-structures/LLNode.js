@@ -67,8 +67,8 @@ class LLNode extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  dataStructures: state.konva.dataStructures
+const mapStateToProps = (state, ownProps) => ({
+  shapeState: state.konva.dataStructures[ownProps.id]
 });
 
 const mapDispatchToProps = dispatch => ({
