@@ -34,24 +34,6 @@ class App extends Component {
     };
   }
 
-  state = {
-    dataStructures: []
-  };
-
-  createDS = (dsName, props) => {
-    var inputDS = ['List', 'GraphList', 'Hashtable'];
-    if (inputDS.includes(dsName) && !props.values) {
-      alert(`Please fill in values for ${dsName}.`);
-    } else {
-      this.setState({
-        dataStructures: [
-          ...this.state.dataStructures,
-          this.dss[dsName].component(props)
-        ]
-      });
-    }
-  };
-
   render() {
     return (
       <Grid className={'whiteboard'} fluid>
@@ -60,7 +42,7 @@ class App extends Component {
             <Sidebar dss={this.dss} createDS={this.createDS} />
           </Col>
           <Col xs={9}>
-            <Whiteboard dataStructures={this.state.dataStructures} />
+            <Whiteboard dss={this.dss} />
           </Col>
         </Row>
       </Grid>
