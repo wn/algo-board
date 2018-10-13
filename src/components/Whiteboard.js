@@ -27,7 +27,7 @@ class Whiteboard extends Component {
   };
   render() {
     return (
-      <Stage width={window.innerWidth} height={window.innerHeight}>
+      <Stage width="auto" height={window.innerHeight}>
         <Layer>
           <Text
             text="Uncontrolled text"
