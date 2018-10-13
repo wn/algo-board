@@ -1,5 +1,5 @@
-import React from 'react';
-import { Arrow, Circle, Group } from 'react-konva';
+import React from "react";
+import { Arrow, Circle, Group } from "react-konva";
 
 export default class LLNode extends React.Component {
   state = {

@@ -1,6 +1,6 @@
-import React from 'react';
-import SquareNode from './SquareNode';
-import { Group } from 'react-konva';
+import React from "react";
+import SquareNode from "./SquareNode";
+import { Group } from "react-konva";
 
 export default class List extends React.Component {
   state = {
@@ -11,8 +11,11 @@ export default class List extends React.Component {
   render() {
     const values = new Array(this.props.size).fill(null);
     this.props.values
-      .split(", ").map(x => x.trim())
-      .map((val, index) => { values[index] = val; });
+      .split(", ")
+      .map(x => x.trim())
+      .map((val, index) => {
+        values[index] = val;
+      });
 
     return (
       <Group draggable>
