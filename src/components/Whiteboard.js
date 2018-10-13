@@ -35,11 +35,15 @@ class Whiteboard extends Component {
       >
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
-            {Object.keys(this.props.dataStructures).map(id =>
-              createDS(this.props.dataStructures[id].structureName, {
-                ...this.props.dataStructures[id].shapeState,
-                key: id
-              })
+            {Object.keys(this.props.dataStructures).map(
+              id => createDS(
+                this.props.dataStructures[id].structureName,
+                {
+                  ...this.props.dataStructures[id].shapeState, 
+                  key: id, 
+                  shapeId: id
+                }
+              )
             )}
           </Layer>
         </Stage>

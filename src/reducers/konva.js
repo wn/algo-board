@@ -16,6 +16,18 @@ export default function(state = initialState, action) {
      * y - the y-coord
      */
     case "ADD_STRUCTURE": {
+      /** Conditionally add default local states for some shapes */
+      switch(action.payload.structureName) {
+        case "LLNode": {
+          action.payload.shapeState = {
+            ...action.payload.shapeState,
+            shapeSourceX: 0,
+            shapeSourceY: 0,
+            lineEndX: 150,
+            lineEndY: 35
+          }
+        }
+      }
       return {
         ...state,
         dataStructures: {
@@ -38,6 +50,22 @@ export default function(state = initialState, action) {
           }
         }
       };
+    }
+    /**
+     * id - the unique identifier for this shape
+     * shapeState - an object, possibly undefined, containing any number of properties
+     */
+    case "UPDATE_SHAPE_STATE": {
+      return {
+        ...state,
+        dataStructures: {
+          ...state.dataStructures,
+          [action.payload.id]: {
+            ...state.dataStructures[action.payload.id],
+            ...(action.payload.shapeState || {})
+          }
+        }
+      }
     }
     default:
       return state;
