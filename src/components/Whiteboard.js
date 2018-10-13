@@ -8,7 +8,8 @@ class Whiteboard extends Component {
     text2: 'black',
     text3: 'black',
     text3x: 10,
-    text3y: 60
+    text3y: 60,
+    stageWidth: window.innerHeight
   };
   handleDragEnd = e => {
     const name = e.target.name();
@@ -25,39 +26,60 @@ class Whiteboard extends Component {
       text3y: e.target.y()
     });
   };
+
+  componentDidMount() {
+    this.checkSize();
+    window.addEventListener("resize", this.checkSize);
+  }
+
+  checkSize = () => {
+    const width = this.container.offsetWidth;
+    this.setState({
+      stageWidth: width
+    });
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.checkSize);
+  }
+
   render() {
     return (
-      <Stage width="auto" height={window.innerHeight}>
-        <Layer>
-          <Text
-            text="Uncontrolled text"
-            name="text1"
-            fill={this.state.text1}
-            draggable
-            onDragEnd={this.handleDragEnd}
-          />
+      <div ref={node => {
+        this.container = node;
+      }}>
+        <Stage width={this.state.stageWidth} height={window.innerHeight}>
+          <Layer>
+            <Text
+              text="Uncontrolled text"
+              name="text1"
+              fill={this.state.text1}
+              draggable
+              onDragEnd={this.handleDragEnd}
+            />
 
-          <Text
-            text="Badly controlled text"
-            name="text2"
-            fill={this.state.text2}
-            x={10}
-            y={30}
-            draggable
-            onDragEnd={this.handleDragEnd}
-          />
+            <Text
+              text="Badly controlled text"
+              name="text2"
+              fill={this.state.text2}
+              x={10}
+              y={30}
+              draggable
+              onDragEnd={this.handleDragEnd}
+            />
 
-          <Text
-            text="Correctly controlled text"
-            name="text3"
-            fill={this.state.text3}
-            x={this.state.text3x}
-            y={this.state.text3y}
-            draggable
-            onDragEnd={this.handleThirdDragEnd}
-          />
-        </Layer>
-      </Stage>
+            <Text
+              text="Correctly controlled text"
+              name="text3"
+              fill={this.state.text3}
+              x={this.state.text3x}
+              y={this.state.text3y}
+              draggable
+              onDragEnd={this.handleThirdDragEnd}
+            />
+          </Layer>
+        </Stage>
+      </div>
     );
   }
 }
