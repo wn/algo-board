@@ -6,3 +6,9 @@
 .whiteboard {
   background-color: #fff6e6;
 }
+
+.dustbin {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

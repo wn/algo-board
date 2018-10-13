@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
+import dustbin from './dustbin.png';
+
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Whiteboard from './components/Whiteboard';
@@ -63,6 +65,7 @@ class App extends Component {
             <Whiteboard dataStructures={this.state.dataStructures} />
           </Col>
         </Row>
+        <img src={dustbin} className="dustbin" alt="dustbin" />
       </Grid>
     );
   }
