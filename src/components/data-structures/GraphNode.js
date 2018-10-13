@@ -30,9 +30,6 @@ class GraphNode extends React.Component {
     });
   };
 
-  spawnArrow = () => {
-  }
-
   render(props) {
     /** Set default x and y as 0 */
     const { x, y } = {
