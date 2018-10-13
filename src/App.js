@@ -12,6 +12,7 @@ import GraphNode from './components/data-structures/GraphNode';
 import GraphList from './components/data-structures/GraphList';
 import Hashtable from './components/data-structures/Hashtable';
 import Pointer from './components/data-structures/Pointer';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +37,10 @@ class App extends Component {
       GraphNode: {
         propAttrs: [],
         component: props => <GraphNode {...props} />
+      },
+      Pointer: {
+        propAttrs: [],
+        component: props => <Pointer {...props} />
       }
     };
   }

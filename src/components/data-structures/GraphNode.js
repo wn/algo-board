@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Circle, Group } from 'react-konva';
 
 import EditableText from './EditableText';
 
-export default class GraphNode extends React.Component {
+class GraphNode extends React.Component {
   state = {
     color: 'black',
     text: 'null',
@@ -57,7 +58,7 @@ export default class GraphNode extends React.Component {
           radius={this.state.radius}
           strokeWidth={4}
           stroke={this.state.color}
-          onClick={this.spawnArrow}
+          onClick={this.props.addPointer}
         />
         <EditableText 
           text={this.props.text || this.state.text} 
@@ -67,3 +68,20 @@ export default class GraphNode extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    shapeState: state.konva.dataStructures[ownProps.shapeId]
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  addPointer: () => dispatch({
+    type: "ADD_STRUCTURE", payload: { structureName: 'Pointer', id: Math.round(Math.random()*1000).toString(), x: 0, y: 0 }
+  }),
+  updateState: (id, shapeState) => dispatch({
+    type: "UPDATE_SHAPE_STATE", payload: { shapeState, id: id.toString() }
+  })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GraphNode);
