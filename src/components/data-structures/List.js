@@ -20,11 +20,6 @@ export default class List extends React.Component {
             context.lineTo(10 + 50 * i, 60);
             context.closePath();
           }
-          // context.moveTo(60, 10);
-          // context.lineTo(110, 10);
-          // context.lineTo(110, 60);
-          // context.lineTo(60, 60);
-          // context.closePath();
           // (!) Konva specific method, it is very important
           context.fillStrokeShape(shape);
         }}
