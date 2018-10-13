@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Konva from 'konva';
-import { Stage, Layer, Text } from 'react-konva';
+import { Stage, Layer } from 'react-konva';
+import LLNode from './data-structures/LLNode';
 
 // Data structures
 import LLNode from './data-structures/LLNode';
