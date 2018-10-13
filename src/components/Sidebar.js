@@ -1,20 +1,20 @@
 import React from 'react';
 
-const Sidebar = props => {
-  const dss = [
-    { name: 'Array', image: '' },
-    { name: 'LLNode', image: '' },
-    { name: 'TreeNode', image: '' },
-    { name: 'GraphNode', image: '' }
-  ];
+const Sidebar = (props) => {
   return (
-    <div style={{ backgroundColor: 'green', height: '100%', marginTop: -21 }}>
-      <h1>Data Structures</h1>
-      <ul>
-        {dss.map((ds, index) => (
-          <li key={index}>{ds.name}</li>
-        ))}
-      </ul>
+    <div style={{backgroundColor: 'green', height: '100%', marginTop: -21}}>
+        <h1>Data Structures</h1>
+        <ul>
+          {
+            props.dss.map((ds) => {
+              return (
+                <li key={ds.name}>
+                  <button onClick={() => props.createDS(ds.name)}>{ds.name}</button>
+                </li>
+              )
+            })
+          }
+        </ul>
     </div>
   );
 };
