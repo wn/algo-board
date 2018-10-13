@@ -8,16 +8,16 @@ export default class Node extends React.Component {
     return (
       <Group>
         <Rect
-          x={this.props.x + this.props.displacement * 50}
-          y={this.props.y}
+          x={this.props.displacement * 50}
+          y={0}
           width={50}
           height={50}
           stroke={'black'}
           strokeWidth={4}
         />
         <EditableText
-          x={this.props.x + this.props.displacement * 50 + 10}
-          y={this.props.y + 20}
+          x={this.props.displacement * 50 + 10}
+          y={20}
           text={this.props.text}
         />
       </Group>
