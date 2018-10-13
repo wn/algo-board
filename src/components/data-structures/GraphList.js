@@ -1,36 +1,47 @@
 import React from 'react';
 import GraphNode from './GraphNode';
 import { Group } from 'react-konva';
+import { connect } from 'react-redux';
 
-export default class GraphList extends React.Component {
-  state = {
-    x: 0,
-    y: 0
-  };
-
+class GraphList extends React.Component {
   render() {
-    const values = new Array(this.props.size).fill(null);
-    this.props.values
-      .split(',')
-      .map(x => x.trim())
-      .map((val, index) => {
-        values[index] = val;
-      });
+    const shapeState = this.props.shapeState;
 
     return (
       <Group draggable>
-        {values.map((val, index) => {
-          return (
-            <GraphNode
-              key={index}
-              displacement={index}
-              x={this.state.x}
-              y={this.state.y}
-              text={val}
-            />
-          );
-        })}
+        {shapeState.values
+          .split(',')
+          .map(x => x.trim())
+          .map((val, index) => {
+            return (
+              <GraphNode
+                key={index}
+                displacement={index}
+                x={shapeState.shapeSourceX}
+                y={shapeState.shapeSourceY}
+                text={val}
+              />
+            );
+          })}
       </Group>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    shapeState: state.konva.dataStructures[ownProps.shapeId]
+  };
+};
+const mapDispatchToProps = dispatch => ({
+  updateState: (id, shapeState) =>
+    dispatch({
+      type: 'UPDATE_SHAPE_STATE',
+      payload: { shapeState, id: id.toString() }
+    })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GraphList);
