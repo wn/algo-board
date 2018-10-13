@@ -20,6 +20,7 @@ class App extends Component {
   }
   
   createDS = (dsName, props) => {
+    props.num = parseInt(props.num);
     this.setState({ dataStructures: [...this.state.dataStructures, this.dss[dsName].component(props)] });
   }
 
