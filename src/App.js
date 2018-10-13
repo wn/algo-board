@@ -1,27 +1,18 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Sidebar from './components/Sidebar';
+import Whiteboard from './components/Whiteboard';
+import SplitPane from 'react-split-pane';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <SplitPane split="vertical" minSize={50} defaultSize={1000}>
+        <div style={{ backgroundColor: 'white', height: '100%' }}>
+        
+        </div>
+        <Sidebar/>
+      </SplitPane>
+    )
   }
 }
 

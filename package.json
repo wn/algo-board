@@ -5,7 +5,9 @@
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-flexbox-grid": "^2.1.2",
+    "react-scripts": "2.0.4",
+    "react-split-pane": "^0.1.84"
   },
   "scripts": {
     "start": "react-scripts start",
