@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Konva from 'konva';
 import { Stage, Layer } from 'react-konva';
+import { connect } from "react-redux";
+
 
 // Data structures
 import LLNode from './data-structures/LLNode';
@@ -37,6 +39,8 @@ class Whiteboard extends Component {
   }
 
   render() {
+    console.log(this.props);
+    this.props.callTestAction();
     return (
       <div
         ref={node => {
@@ -54,4 +58,15 @@ class Whiteboard extends Component {
   }
 }
 
-export default Whiteboard;
+/** Access items from state.konva here */
+const mapStateToProps = state => {
+  return { test: state.konva.test };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    callTestAction: () => dispatch({type: "TEST_ACTION", payload: 1})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard);
