@@ -1,7 +1,7 @@
 import React from 'react';
 import { Circle } from 'react-konva';
 
-export default class Node extends React.Component {
+export default class GraphNode extends React.Component {
   state = {
     color: 'red'
   };
@@ -14,7 +14,6 @@ export default class Node extends React.Component {
         shadowBlur={5}
         onClick={this.handleClick}
         draggable
-        Text="LOL"
       />
     );
   }

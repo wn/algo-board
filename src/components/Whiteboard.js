@@ -5,7 +5,7 @@ import { Stage, Layer } from 'react-konva';
 // Data structures
 import LLNode from './data-structures/LLNode';
 import List from './data-structures/List';
-import Node from './data-structures/Node';
+import GraphNode from './data-structures/GraphNode';
 
 class Whiteboard extends Component {
   state = {
@@ -36,7 +36,7 @@ class Whiteboard extends Component {
         <Layer>
           <LLNode />
           <List num={5} />
-          <Node />
+          <GraphNode />
         </Layer>
       </Stage>
     );

@@ -8,7 +8,7 @@ export default class List extends React.Component {
     size: 10
   };
 
-  updateListEnd = e => {
+  updateList = e => {
     this.setState({
       startX: e.target.x(),
       startY: e.target.y()
@@ -21,10 +21,11 @@ export default class List extends React.Component {
         {new Array(this.state.size).fill(null).map((val, index) => {
           return (
             <SquareNode
+              key={index}
               displacement={index}
               x={this.state.startX}
               y={this.state.startY}
-              dragHandle={this.updateListEnd}
+              dragHandle={this.updateList}
             />
           );
         })}
