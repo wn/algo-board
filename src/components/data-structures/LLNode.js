@@ -21,7 +21,8 @@ class LLNode extends React.Component {
     })
 
   render() {
-    const {shapeState} = this.props;
+    console.log('LLNode render', this.props);
+    const shapeState = this.props.shapeState;
     return (
       <React.Fragment>
         <Group
@@ -68,9 +69,13 @@ class LLNode extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  shapeState: state.konva.dataStructures[ownProps.id]
-});
+const mapStateToProps = (state, ownProps) => {
+  console.log('mapStateToProps own', ownProps);
+  console.log('mapStateToProps state', state);
+  return {
+    shapeState: state.konva.dataStructures[ownProps.shapeId]
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   updateState: (id, shapeState) => dispatch({

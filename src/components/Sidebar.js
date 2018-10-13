@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
   }
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   addStructure: (shapeState, structureName, id) => {
     var inputDS = ['List', 'GraphList', 'Hashtable'];
