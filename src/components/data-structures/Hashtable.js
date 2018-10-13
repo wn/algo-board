@@ -21,7 +21,7 @@ class Hashtable extends React.Component {
           .map(x => x.split(' ', 2))
           .map((pair, index) => (
             <Row
-              key={pair}
+              key={index}
               displacement={index}
               x={shapeState.shapeSourceX}
               y={shapeState.shapeSourceY}
