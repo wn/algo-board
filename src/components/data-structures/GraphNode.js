@@ -4,7 +4,7 @@ import Konva from 'konva';
 
 import LLNode from './LLNode'
 
-export default class Node extends React.Component {
+export default class GraphNode extends React.Component {
 
   state = {
     color: 'black',
