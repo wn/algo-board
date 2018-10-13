@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Konva from 'konva';
-import { Stage, Layer, Text } from 'react-konva';
+import { Stage, Layer } from 'react-konva';
+
+// Data structures
+import LLNode from './data-structures/LLNode';
+import List from './data-structures/List';
+import Node from './data-structures/Node';
 
 class Whiteboard extends Component {
   state = {
@@ -50,33 +55,9 @@ class Whiteboard extends Component {
       }}>
         <Stage width={this.state.stageWidth} height={window.innerHeight}>
           <Layer>
-            <Text
-              text="Uncontrolled text"
-              name="text1"
-              fill={this.state.text1}
-              draggable
-              onDragEnd={this.handleDragEnd}
-            />
-
-            <Text
-              text="Badly controlled text"
-              name="text2"
-              fill={this.state.text2}
-              x={10}
-              y={30}
-              draggable
-              onDragEnd={this.handleDragEnd}
-            />
-
-            <Text
-              text="Correctly controlled text"
-              name="text3"
-              fill={this.state.text3}
-              x={this.state.text3x}
-              y={this.state.text3y}
-              draggable
-              onDragEnd={this.handleThirdDragEnd}
-            />
+            <LLNode />
+            <List num={5} />
+            <Node />
           </Layer>
         </Stage>
       </div>
