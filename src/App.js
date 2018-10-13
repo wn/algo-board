@@ -30,8 +30,12 @@ class App extends Component {
   };
 
   createDS = (dsName, props) => {
+    var inputDS = ['List', 'Hashtable'];
     var input = props.size;
-    if (isNaN(input) || input <= 0 || input >= 25) {
+    if (
+      inputDS.includes(dsName) &&
+      (isNaN(input) || input <= 0 || input >= 25)
+    ) {
       console.log('Input is not a value from 0 to 25');
     } else {
       props.size = parseInt(props.size);
