@@ -1,32 +1,34 @@
 import React from 'react';
-import { Shape } from 'react-konva';
+import SquareNode from './SquareNode';
 
 export default class List extends React.Component {
   state = {
-    startX: 0,
-    startY: 0
+    startX: 20,
+    startY: 20,
+    size: 10
+  };
+
+  updateListEnd = e => {
+    this.setState({
+      startX: e.target.x(),
+      startY: e.target.y()
+    });
   };
 
   render() {
     return (
-      <Shape
-        sceneFunc={(context, shape) => {
-          console.log(this.props.num);
-          context.beginPath();
-          for (var i = 0; i < this.props.num; i++) {
-            context.moveTo(10 + 50 * i, 10);
-            context.lineTo(60 + 50 * i, 10);
-            context.lineTo(60 + 50 * i, 60);
-            context.lineTo(10 + 50 * i, 60);
-            context.closePath();
-          }
-          // (!) Konva specific method, it is very important
-          context.fillStrokeShape(shape);
-        }}
-        stroke="black"
-        strokeWidth={4}
-        draggable
-      />
+      <React.Fragment>
+        {new Array(this.state.size).fill(null).map((val, index) => {
+          return (
+            <SquareNode
+              displacement={index}
+              x={this.state.startX}
+              y={this.state.startY}
+              dragHandle={this.updateListEnd}
+            />
+          );
+        })}
+      </React.Fragment>
     );
   }
 }

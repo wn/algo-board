@@ -1,6 +1,5 @@
 import React from 'react';
-import { Shape, Circle, Text } from 'react-konva';
-import Konva from 'konva';
+import { Circle } from 'react-konva';
 
 export default class Node extends React.Component {
   state = {
@@ -15,6 +14,7 @@ export default class Node extends React.Component {
         shadowBlur={5}
         onClick={this.handleClick}
         draggable
+        Text="LOL"
       />
     );
   }

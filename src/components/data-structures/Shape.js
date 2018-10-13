@@ -1,7 +1,7 @@
 import React from 'react';
 import { Shape } from 'react-konva';
 
-export default class LLNode extends React.Component {
+export default class Shapesss extends React.Component {
   state = {
     startX: 0,
     startY: 0
@@ -10,7 +10,16 @@ export default class LLNode extends React.Component {
   render() {
     return (
       <Shape
-        sceneFunc={(context, shape) => {
+        x={50}
+        y={50}
+        text="Some tadfasdfdsfasdfext"
+        fill="red"
+        stroke="black"
+        strokeWidth={4}
+        draggable
+        sceneFunc={function sceneFunc(context, shape) {
+          context.setAttr('textBaseline', 'ideographic');
+          context.fillText(this.getAttr('text'), 0, 0);
           context.beginPath();
           context.moveTo(10, 10);
           context.lineTo(60, 10);
@@ -22,12 +31,8 @@ export default class LLNode extends React.Component {
           context.lineTo(110, 60);
           context.lineTo(60, 60);
           context.closePath();
-          // (!) Konva specific method, it is very important
           context.fillStrokeShape(shape);
         }}
-        stroke="black"
-        strokeWidth={4}
-        draggable
       />
     );
   }
