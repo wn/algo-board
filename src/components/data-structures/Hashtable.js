@@ -1,36 +1,52 @@
 import React from 'react';
 import Row from './Row';
+import { connect } from 'react-redux';
 import { Group } from 'react-konva';
 
-export default class Hashtable extends React.Component {
-  state = {
-    startX: 20,
-    startY: 20
-  };
+class Hashtable extends React.Component {
+  dragTable = e =>
+    this.props.updateState(this.props.shapeId, {
+      ...this.props.shapeState,
+      shapeSourceX: e.target.x(),
+      shapeSourceY: e.target.y()
+    });
 
   render() {
-    const keyValuePairs = new Array(this.props.size).fill(null);
-    this.props.keyValuePairs
-      .split(',')
-      .map(x => x.trim())
-      .map(x => x.split(' ', 2))
-      .map((p, index) => {
-        keyValuePairs[index] = p;
-      });
+    const shapeState = this.props.shapeState;
     return (
-      <Group draggable>
-        {keyValuePairs.map((pair, index) => {
-          return (
+      <Group draggable onDragMove={this.dragTable}>
+        {shapeState.keyValuePairs
+          .split(',')
+          .map(x => x.trim())
+          .map(x => x.split(' ', 2))
+          .map((pair, index) => (
             <Row
-              key={index}
+              key={pair}
               displacement={index}
-              x={this.state.startX}
-              y={this.state.startY}
+              x={shapeState.shapeSourceX}
+              y={shapeState.shapeSourceY}
               pair={pair}
             />
-          );
-        })}
+          ))}
       </Group>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    shapeState: state.konva.dataStructures[ownProps.shapeId]
+  };
+};
+const mapDispatchToProps = dispatch => ({
+  updateState: (id, shapeState) =>
+    dispatch({
+      type: 'UPDATE_SHAPE_STATE',
+      payload: { shapeState, id: id.toString() }
+    })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Hashtable);

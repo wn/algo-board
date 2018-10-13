@@ -2,37 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Arrow, Circle, Group, Shape } from 'react-konva';
 
-import EditableText from './EditableText'
+import EditableText from './EditableText';
 
 class LLNode extends React.Component {
-
   updateLineStart = e =>
-    this.props.updateState(
-      this.props.shapeId,
-      {
-        ...this.props.shapeState,
-        shapeSourceX: e.target.x(),
-        shapeSourceY: e.target.y(),
-      })
+    this.props.updateState(this.props.shapeId, {
+      ...this.props.shapeState,
+      shapeSourceX: e.target.x(),
+      shapeSourceY: e.target.y()
+    });
 
   updateLineEnd = e =>
-    this.props.updateState(
-      this.props.shapeId,
-      {
+    this.props.updateState(this.props.shapeId, {
       ...this.props.shapeState,
       lineEndX: e.target.x(),
-      lineEndY: e.target.y(),
-    })
+      lineEndY: e.target.y()
+    });
 
   render() {
-    console.log('LLNode render', this.props);
     const shapeState = this.props.shapeState;
     return (
       <React.Fragment>
-        <Group
-          draggable
-          onDragMove={this.updateLineStart}
-        >
+        <Group draggable onDragMove={this.updateLineStart}>
           <Shape
             sceneFunc={(context, shape) => {
               context.beginPath();
@@ -52,11 +43,15 @@ class LLNode extends React.Component {
             stroke="black"
             strokeWidth={4}
           />
-          <EditableText x={20} y={30}/>
+          <EditableText x={20} y={30} />
         </Group>
         <Arrow
-          points={[shapeState.shapeSourceX + 85, shapeState.shapeSourceY + 35,
-            shapeState.lineEndX, shapeState.lineEndY]}
+          points={[
+            shapeState.shapeSourceX + 85,
+            shapeState.shapeSourceY + 35,
+            shapeState.lineEndX,
+            shapeState.lineEndY
+          ]}
           stroke
           strokeWidth={4}
           fill
@@ -74,17 +69,20 @@ class LLNode extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('mapStateToProps own', ownProps);
-  console.log('mapStateToProps state', state);
   return {
     shapeState: state.konva.dataStructures[ownProps.shapeId]
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
-  updateState: (id, shapeState) => dispatch({
-    type: "UPDATE_SHAPE_STATE", payload: { shapeState, id: id.toString() }
-  })
+  updateState: (id, shapeState) =>
+    dispatch({
+      type: 'UPDATE_SHAPE_STATE',
+      payload: { shapeState, id: id.toString() }
+    })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LLNode);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LLNode);

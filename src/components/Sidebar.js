@@ -8,24 +8,24 @@ class Sidebar extends React.Component {
   counter = 0;
 
   render() {
-    const {addStructure} = this.props;
+    const { addStructure } = this.props;
     return (
       <div className={'sidebar'}>
         <p className={'header'}>Algo board</p>
         <ListGroup>
-          {
-            Object.keys(this.props.dss).map((dsName) => {
-              const { propAttrs } = this.props.dss[dsName];
-              return (
-                <SidebarItem
-                  key={dsName}
-                  dsName={dsName}
-                  propAttrs={propAttrs}
-                  createDS={(otherStates) => addStructure(otherStates, dsName, this.counter++)}
-                />
-              );
-            })
-          }
+          {Object.keys(this.props.dss).map(dsName => {
+            const { propAttrs } = this.props.dss[dsName];
+            return (
+              <SidebarItem
+                key={dsName}
+                dsName={dsName}
+                propAttrs={propAttrs}
+                createDS={otherStates =>
+                  addStructure(otherStates, dsName, this.counter++)
+                }
+              />
+            );
+          })}
         </ListGroup>
       </div>
     );
@@ -36,14 +36,18 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   addStructure: (shapeState, structureName, id) => {
     var inputDS = ['List', 'GraphList', 'Hashtable'];
-    if (inputDS.includes(structureName) && !shapeState.values) {
+    if (1 == 2) {
       alert(`Please fill in values for ${structureName}.`);
     } else {
       dispatch({
-        type: "ADD_STRUCTURE", payload: {shapeState, structureName, id: id.toString()}
+        type: 'ADD_STRUCTURE',
+        payload: { shapeState, structureName, id: id.toString() }
       });
     }
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sidebar);

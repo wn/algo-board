@@ -2,7 +2,7 @@ const initialState = {
   dataStructures: {},
   associations: {
     pointingTo: {},
-    pointingFrom: {},
+    pointingFrom: {}
   }
 };
 
@@ -15,17 +15,17 @@ export default function(state = initialState, action) {
      * x - the x-coord
      * y - the y-coord
      */
-    case "ADD_STRUCTURE": {
+    case 'ADD_STRUCTURE': {
       /** Conditionally add default local states for some shapes */
-      switch(action.payload.structureName) {
-        case "LLNode": {
+      switch (action.payload.structureName) {
+        case 'LLNode': {
           action.payload.shapeState = {
             ...action.payload.shapeState,
             shapeSourceX: 0,
             shapeSourceY: 0,
             lineEndX: 150,
             lineEndY: 35
-          }
+          };
         }
       }
       return {
@@ -35,18 +35,18 @@ export default function(state = initialState, action) {
           [action.payload.id]: {
             ...(action.payload.shapeState || {}),
             structureName: action.payload.structureName,
-            x: 10,
-            y: 10,
+            shapeSourceX: 10,
+            shapeSourceY: 10
           }
         },
         associations: {
           pointingTo: {
             ...state.associations.pointingTo,
-            [action.payload.id]: {},
+            [action.payload.id]: {}
           },
           pointingFrom: {
             ...state.associations.pointingFrom,
-            [action.payload.id]: {},
+            [action.payload.id]: {}
           }
         }
       };
@@ -55,7 +55,7 @@ export default function(state = initialState, action) {
      * id - the unique identifier for this shape
      * shapeState - an object, possibly undefined, containing any number of properties
      */
-    case "UPDATE_SHAPE_STATE": {
+    case 'UPDATE_SHAPE_STATE': {
       return {
         ...state,
         dataStructures: {
@@ -65,10 +65,9 @@ export default function(state = initialState, action) {
             ...(action.payload.shapeState || {})
           }
         }
-      }
+      };
     }
     default:
       return state;
   }
 }
-
