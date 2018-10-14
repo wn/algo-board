@@ -6,7 +6,7 @@ import EditableText from './EditableText';
 export default class Node extends React.Component {
   render() {
     return (
-      <Group>
+      <Group onClick={this.props.onClick}>
         <Rect
           x={this.props.displacement * 50}
           y={0}

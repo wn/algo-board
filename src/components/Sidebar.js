@@ -20,8 +20,16 @@ class Sidebar extends React.Component {
                 key={dsName}
                 dsName={dsName}
                 propAttrs={propAttrs}
-                createDS={otherStates =>
+                createDS={otherStates => {
+                  
+                  if (otherStates.values) {
+                    otherStates.values = otherStates.values
+                      .split(',')
+                      .map(x => x.trim());
+                  }
+                  
                   addStructure(otherStates, dsName, this.counter++)
+                }
                 }
               />
             );
@@ -40,6 +48,7 @@ const mapDispatchToProps = dispatch => ({
       GraphList: 'graphValues',
       Hashtable: 'keyValuePairs'
     };
+
     if (structureName in inputDS && !shapeState[inputDS[structureName]]) {
       alert(`Please fill in values for ${structureName}.`);
     } else {
