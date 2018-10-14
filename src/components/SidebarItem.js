@@ -25,7 +25,7 @@ class SidebarItem extends React.Component {
               label={this.state.value}
               class="form-control DS-input" 
               onChange={e => this.handleChange(e, attr)}
-              hint={this.state.placeholder[attr]}
+              placeholder={this.state.placeholder[attr]}
               aria-label={this.state.value} 
               aria-describedby="basic-addon2" />
             </React.Fragment>
