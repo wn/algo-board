@@ -17,24 +17,29 @@ class SidebarItem extends React.Component {
 
   render() {
     return (
-      <div className={'DS-list'}>
+      <div class="DS-list input-group mb-3">
         {this.props.propAttrs.map(attr => {
           return (
             <React.Fragment key={attr}>
-              <Input
-                className={'DS-input'}
-                label={this.state.value}
-                onChange={e => this.handleChange(e, attr)}
-                hint={this.state.placeholder[attr]}
-              />
+            <input type="text" 
+              label={this.state.value}
+              class="form-control DS-input" 
+              onChange={e => this.handleChange(e, attr)}
+              placeholder={this.state.placeholder[attr]}
+              aria-label={this.state.value} 
+              aria-describedby="basic-addon2" />
             </React.Fragment>
           );
         })}
-      <button 
-        type="button" 
-        class="btn btn-light DS-button"
-        onClick={() => this.props.createDS(this.state)}>{this.props.dsName}</button>
+        <div class="input-group-append">
+          <button 
+            type="button" 
+            class="btn btn-light DS-button"
+            onClick={() => this.props.createDS(this.state)}>{this.props.dsName}</button>
+        </div>
       </div>
+
+        
     );
   }
 }
