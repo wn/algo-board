@@ -8,7 +8,7 @@ class GraphNode extends React.Component {
   state = {
     color: 'black',
     text: 'null',
-    radius: 50,
+    radius: 20,
   };
 
   updateLineStart = e => {
@@ -77,8 +77,9 @@ class GraphNode extends React.Component {
           }
         />
         <EditableText 
-          y={-70}
-          size={20}
+          x={-20}
+          y={-40}
+          textSize={20}
           text={this.props.text || this.state.text} 
           onClick={this.setText}
         />

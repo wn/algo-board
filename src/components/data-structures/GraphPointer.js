@@ -31,8 +31,8 @@ class GraphPointer extends React.Component {
       .filter(key => {
         const struct = this.props.allDataStructures[key];
         return struct.structureName === "GraphNode" 
-          && Math.abs(struct.shapeSourceX - x) < 50
-          && Math.abs(struct.shapeSourceY - y) < 50;
+          && Math.abs(struct.shapeSourceX - x) < 20
+          && Math.abs(struct.shapeSourceY - y) < 20;
       });
   }
   
@@ -41,14 +41,14 @@ class GraphPointer extends React.Component {
       <Group>
         <Circle
           x={this.props.shapeSourceX}
-          y={this.props.shapeSourceY + 50}
+          y={this.props.shapeSourceY + 20}
           radius={8}
           fill
         />
         <Arrow
           points={[
             this.props.shapeSourceX,
-            this.props.shapeSourceY + 50,
+            this.props.shapeSourceY + 20,
             this.props.shapeState.lineEndX,
             this.props.shapeState.lineEndY
           ]}
