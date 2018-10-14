@@ -30,8 +30,7 @@ This app contains the following data structures and its features:
 ![](./screenshots/screenshot00.png)
 ![](./screenshots/screenshot01.png)
 ![](./screenshots/screenshot02.png)
-![](./screenshots/screenshot03.png)
-![](./screenshots/screenshot04.png)
+![](./screenshots/algo_gif)
 
 ## Upcoming Features
 
