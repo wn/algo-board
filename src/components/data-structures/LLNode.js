@@ -83,7 +83,7 @@ class LLNode extends React.Component {
             stroke="black"
             strokeWidth={4}
           />
-          <EditableText x={20} y={30} />
+          <EditableText x={20} y={30} parentId={this.props.shapeId} text={this.props.shapeState.text}/>
         </Group>
         <Arrow
           points={[

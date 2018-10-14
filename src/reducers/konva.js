@@ -24,7 +24,8 @@ export default function(state = initialState, action) {
             shapeSourceX: 0,
             shapeSourceY: 0,
             lineEndX: 150,
-            lineEndY: 35
+            lineEndY: 35,
+            text: 'null'
           };
         }
       }
