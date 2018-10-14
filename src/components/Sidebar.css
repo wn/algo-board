@@ -15,6 +15,7 @@
   padding-right: 8px;
   font-family: monospace;
   color: white;
+  margin-bottom: 0px;
 }
 
 .codeIcon {
@@ -26,9 +27,11 @@
 .DS-list {
   background-color: #f16664;
   padding: 20px;
+  margin-bottom: 20px;
 }
 
 .DS-input {
+  font-size: 14px;
   padding: 20px;
 }
 

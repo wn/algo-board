@@ -34,7 +34,6 @@ class SidebarItem extends React.Component {
         type="button" 
         class="btn btn-light DS-button"
         onClick={() => this.props.createDS(this.state)}>{this.props.dsName}</button>
-          
       </div>
     );
   }
