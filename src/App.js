@@ -20,13 +20,8 @@ class App extends Component {
         propAttrs: ['values'],
         component: props => <List {...props} />
       },
-      LLNode: { propAttrs: [], component: props => <LLNode {...props} /> },
-      GraphNode: {
-        propAttrs: [],
-        component: props => <GraphNode {...props} />
-      },
       GraphList: {
-        propAttrs: ['values'],
+        propAttrs: ['graphValues'],
         component: props => <GraphList {...props} />
       },
       Hashtable: {
@@ -36,6 +31,11 @@ class App extends Component {
       Pointer: {
         propAttrs: [],
         component: props => <Pointer {...props} />
+      },
+      LLNode: { propAttrs: [], component: props => <LLNode {...props} /> },
+      GraphNode: {
+        propAttrs: [],
+        component: props => <GraphNode {...props} />
       }
     };
   }

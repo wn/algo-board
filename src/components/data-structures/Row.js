@@ -6,7 +6,10 @@ export default class Row extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {(this.props.pair || [undefined, undefined]).map((val, index) => {
+        {(this.props.pair && this.props.pair.length === 2
+          ? this.props.pair
+          : [undefined, undefined]
+        ).map((val, index) => {
           return (
             <>
               <Data
@@ -18,7 +21,7 @@ export default class Row extends React.Component {
                 key={val}
                 x={index * 200 + 50}
                 y={this.props.displacement * 50 + 20}
-                text={val}
+                text={val ? val : 'null'}
               />
             </>
           );
