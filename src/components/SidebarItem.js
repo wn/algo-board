@@ -18,7 +18,7 @@ class SidebarItem extends React.Component {
 
   render() {
     return (
-      <ListGroupItem className={'DS-list'}>
+      <div className={'DS-list'}>
         {this.props.propAttrs.map(attr => {
           return (
             <React.Fragment key={attr}>
@@ -37,7 +37,7 @@ class SidebarItem extends React.Component {
         >
           {this.props.dsName}
         </Button>
-      </ListGroupItem>
+      </div>
     );
   }
 }

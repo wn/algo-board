@@ -3,7 +3,6 @@
   height: 100%;
   width: 100%;
   margin-left: -18px;
-  border-style: solid;
 }
 
 .header {
@@ -17,7 +16,6 @@
 .DS-list {
   background-color: #f16664;
   padding: 20px;
-  border-color: black;
 }
 
 .DS-input {
