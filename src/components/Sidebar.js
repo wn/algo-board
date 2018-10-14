@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
       <div className={'sidebar'}>
         <p className={'header'}><img src={codeIcon} className="codeIcon" alt="code" />Algo board</p>
         <ListGroup>
-          {Object.keys(this.props.dss).map(dsName => {
+          {Object.keys(this.props.dss).filter(dsName => dsName !== "GraphPointer").map(dsName => {
             const { propAttrs } = this.props.dss[dsName];
             return (
               <SidebarItem
