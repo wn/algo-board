@@ -63,6 +63,25 @@ class LLNode extends React.Component {
     const shapeState = this.props.shapeState;
     return (
       <React.Fragment>
+        <Arrow
+          points={[
+            shapeState.shapeSourceX + 85,
+            shapeState.shapeSourceY + 35,
+            shapeState.lineEndX,
+            shapeState.lineEndY
+          ]}
+          stroke
+          strokeWidth={4}
+          fill
+        />
+        <Circle
+          x={shapeState.lineEndX}
+          y={shapeState.lineEndY}
+          radius={10}
+          draggable
+          onDragMove={this.updateLineEnd}
+          onDragEnd={this.checkConnections}
+        />
         <Group draggable onDragMove={this.updateLineStart}>
           <Shape
             sceneFunc={(context, shape) => {
@@ -85,25 +104,6 @@ class LLNode extends React.Component {
           />
           <EditableText x={20} y={30} parentId={this.props.shapeId} text={this.props.shapeState.text}/>
         </Group>
-        <Arrow
-          points={[
-            shapeState.shapeSourceX + 85,
-            shapeState.shapeSourceY + 35,
-            shapeState.lineEndX,
-            shapeState.lineEndY
-          ]}
-          stroke
-          strokeWidth={4}
-          fill
-        />
-        <Circle
-          x={shapeState.lineEndX}
-          y={shapeState.lineEndY}
-          radius={10}
-          draggable
-          onDragMove={this.updateLineEnd}
-          onDragEnd={this.checkConnections}
-        />
       </React.Fragment>
     );
   }
