@@ -35,7 +35,7 @@ class EditableText extends React.Component {
         align="center"
         verticalAlign="middle"
         fill={'black'}
-        ownClick={this.onTextClick(parentId, text)}
+        onClick={this.onTextClick(parentId, text)}
       />
     );
   }
