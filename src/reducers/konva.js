@@ -59,10 +59,10 @@ export default function(state = initialState, action) {
         dataStructures: {
           ...state.dataStructures,
           [action.payload.id]: {
-            ...(action.payload.shapeState || {}),
             structureName: action.payload.structureName,
             shapeSourceX: 10,
-            shapeSourceY: 10
+            shapeSourceY: 10,
+            ...(action.payload.shapeState || {}),
           }
         },
         associations: {

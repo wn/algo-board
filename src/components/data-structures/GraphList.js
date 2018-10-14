@@ -11,16 +11,8 @@ class GraphList extends React.Component {
         {shapeState.graphValues
           .split(',')
           .map(x => x.trim())
-          .map((val, index) => {
-            return (
-              <GraphNode
-                key={index}
-                displacement={index}
-                x={shapeState.shapeSourceX}
-                y={shapeState.shapeSourceY}
-                text={val}
-              />
-            );
+          .forEach((val, index) => {
+            this.props.addNode(40 + index * 60, 50, {text: val});
           })}
       </React.Fragment>
     );
@@ -33,6 +25,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 const mapDispatchToProps = dispatch => ({
+  addNode: (x, y, shapeProps) => dispatch({
+    type: "ADD_STRUCTURE", payload: { 
+      structureName: 'GraphNode', 
+      id: 'LIST' + " " + Math.round(Math.random()*1000).toString(),
+      shapeState: { shapeSourceX: x, shapeSourceY: y, ...shapeProps } }
+  }),
   updateState: (id, shapeState) =>
     dispatch({
       type: 'UPDATE_SHAPE_STATE',

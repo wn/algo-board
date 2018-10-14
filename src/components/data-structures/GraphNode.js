@@ -53,7 +53,7 @@ class GraphNode extends React.Component {
 
   render(props) {
     /** Set default x and y as 0 */
-    const { shapeSourceX, shapeSourceY } = this.props.shapeState;
+    const { shapeSourceX, shapeSourceY, text } = this.props.shapeState;
 
     var diameter = 2 * this.state.radius;
 
@@ -80,7 +80,7 @@ class GraphNode extends React.Component {
           x={-20}
           y={-40}
           textSize={20}
-          text={this.props.text || this.state.text} 
+          text={text || this.state.text} 
           onClick={this.setText}
         />
       </Group>
