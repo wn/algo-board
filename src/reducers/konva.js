@@ -19,14 +19,16 @@ export default function(state = initialState, action) {
       /** Conditionally add default local states for some shapes */
       switch (action.payload.structureName) {
         case 'LLNode': {
+          console.log("here");
           action.payload.shapeState = {
-            ...action.payload.shapeState,
             shapeSourceX: 0,
             shapeSourceY: 0,
             lineEndX: 150,
             lineEndY: 35,
-            text: "null"
+            text: "null",
+            ...action.payload.shapeState,
           };
+          break;
         }
         case 'Pointer': {
           action.payload.shapeState = {
@@ -36,6 +38,7 @@ export default function(state = initialState, action) {
             lineEndX: 150,
             lineEndY: 150
           };
+          break;
         }
         case 'Hashtable': {
           action.payload.shapeState = {
@@ -43,8 +46,10 @@ export default function(state = initialState, action) {
             shapeSourceX: 50,
             shapeSourceY: 50
           };
+          break;
         }
         case 'GraphList': {
+          console.log("here2");
           action.payload.shapeState = {
             ...action.payload.shapeState,
             shapeSourceX: 150,
@@ -52,6 +57,7 @@ export default function(state = initialState, action) {
             lineEndX: 150,
             lineEndY: 150
           };
+          break;
         }
       }
       return {
@@ -60,8 +66,8 @@ export default function(state = initialState, action) {
           ...state.dataStructures,
           [action.payload.id]: {
             structureName: action.payload.structureName,
-            shapeSourceX: 10,
-            shapeSourceY: 10,
+            shapeSourceX: 0,
+            shapeSourceY: 0,
             ...(action.payload.shapeState || {}),
           }
         },
