@@ -27,6 +27,31 @@ export default function(state = initialState, action) {
             lineEndY: 35
           };
         }
+        case 'Pointer': {
+          action.payload.shapeState = {
+            ...action.payload.shapeState,
+            shapeSourceX: 0,
+            shapeSourceY: 0,
+            lineEndX: 150,
+            lineEndY: 150
+          };
+        }
+        case 'Hashtable': {
+          action.payload.shapeState = {
+            ...action.payload.shapeState,
+            shapeSourceX: 50,
+            shapeSourceY: 50
+          };
+        }
+        case 'GraphList': {
+          action.payload.shapeState = {
+            ...action.payload.shapeState,
+            shapeSourceX: 150,
+            shapeSourceY: 150,
+            lineEndX: 150,
+            lineEndY: 150
+          };
+        }
       }
       return {
         ...state,
@@ -67,8 +92,8 @@ export default function(state = initialState, action) {
         }
       };
     }
-    case "CONNECT_NODES": {
-      const {source, dest} = action.payload;
+    case 'CONNECT_NODES': {
+      const { source, dest } = action.payload;
       return {
         ...state,
         associations: {
@@ -76,18 +101,18 @@ export default function(state = initialState, action) {
             ...state.associations.pointingTo,
             [dest]: {
               ...state.associations.pointingTo[dest],
-              [source]: true,
+              [source]: true
             }
           },
           pointingFrom: {
             ...state.associations.pointingFrom,
             [source]: {
               ...state.associations.pointingFrom[source],
-              [dest]: true,
+              [dest]: true
             }
           }
         }
-      }
+      };
     }
     default:
       return state;

@@ -8,8 +8,8 @@ export default class GraphNode extends React.Component {
     color: 'black',
     text: 'null',
     radius: 50,
-    x: 0,
-    y: 0
+    x: 50,
+    y: 50
   };
 
   handleDragEnd() {
@@ -42,7 +42,7 @@ export default class GraphNode extends React.Component {
     return (
       <Group
         x={
-          x === 0 && this.props.displacement
+          x === 50 && this.props.displacement
             ? x + this.props.displacement * diameter
             : x
         }
