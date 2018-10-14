@@ -108,8 +108,12 @@ export default function(state = initialState, action) {
           pointingFrom: {
             ...state.associations.pointingFrom,
             [source]: {
+<<<<<<< HEAD
               ...state.associations.pointingFrom[source],
               [dest]: true
+=======
+              [dest]: true,
+>>>>>>> Add arrows for graph nodes
             }
           }
         }

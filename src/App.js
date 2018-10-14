@@ -11,6 +11,7 @@ import LLNode from './components/data-structures/LLNode';
 import GraphNode from './components/data-structures/GraphNode';
 import GraphList from './components/data-structures/GraphList';
 import Hashtable from './components/data-structures/Hashtable';
+import GraphPointer from './components/data-structures/GraphPointer';
 import Pointer from './components/data-structures/Pointer';
 
 class App extends Component {
@@ -37,6 +38,10 @@ class App extends Component {
       GraphNode: {
         propAttrs: [],
         component: props => <GraphNode {...props} />
+      },
+      GraphPointer: {
+        propAttrs: [],
+        component: props => <GraphPointer {...props} />
       },
       Pointer: {
         propAttrs: [],
