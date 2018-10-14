@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Text } from 'react-konva';
 
 /**
@@ -9,14 +10,15 @@ import { Text } from 'react-konva';
  * @prop text - text to display
  * @prop parentId - id of root shape to modify
  */
-export default class EditableText extends React.Component {
+class EditableText extends React.Component {
 
-  onTextClick(text) {
+  onTextClick = (parentId, text) => {
     return e => {
       const newText = prompt('Please enter some new text', text);
-      this.updateState({
-        text: !newText ? 'null' : newText.trim() ? newText.trim() : 'null'
-      });
+      this.props.updateText(
+        parentId,
+        !newText ? 'null' : newText.trim() ? newText.trim() : 'null'
+      );
     };
   }
 
@@ -33,7 +35,22 @@ export default class EditableText extends React.Component {
         align="center"
         verticalAlign="middle"
         fill={'black'}
+        ownClick={this.onTextClick(parentId, text)}
       />
     );
   }
 }
+
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({
+  updateText: (parentId, text) =>
+    dispatch({
+      type: 'UPDATE_SHAPE_STATE',
+      payload: { shapeState: {text}, id: parentId.toString() }
+    })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditableText);
