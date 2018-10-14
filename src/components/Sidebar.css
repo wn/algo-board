@@ -3,24 +3,35 @@
   height: 100%;
   width: 100%;
   margin-left: -18px;
-  border-style: solid;
 }
 
 .header {
   text-align: center;
   font-weight: bold;
-  font-size: 40px;
-  padding: 15px;
+  font-size: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-family: monospace;
+  color: white;
+  margin-bottom: 0px;
+}
+
+.codeIcon {
+  width: 15%;
+  margin-right: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .DS-list {
   background-color: #f16664;
   padding: 20px;
-  border-color: black;
+  margin-bottom: 20px;
 }
 
 .DS-input {
+  font-size: 14px;
   padding: 20px;
 }
 

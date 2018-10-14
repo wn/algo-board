@@ -4,6 +4,8 @@ import SidebarItem from './SidebarItem';
 import './Sidebar.css';
 import { ListGroup } from 'react-bootstrap';
 
+import codeIcon from '../terminal.png';
+
 class Sidebar extends React.Component {
   counter = 0;
 
@@ -11,7 +13,7 @@ class Sidebar extends React.Component {
     const { addStructure } = this.props;
     return (
       <div className={'sidebar'}>
-        <p className={'header'}>Algo board</p>
+        <p className={'header'}><img src={codeIcon} className="codeIcon" alt="code" />Algo board</p>
         <ListGroup>
           {Object.keys(this.props.dss).map(dsName => {
             const { propAttrs } = this.props.dss[dsName];

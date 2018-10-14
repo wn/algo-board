@@ -11,4 +11,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  width: 4%;
+  margin-bottom: 3rem;
+  margin-right: 3rem;
 }
