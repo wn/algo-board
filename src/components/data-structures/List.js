@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 class List extends React.Component {
   render() {
     const values = [];
-    console.log(this.props.shapeState);
     this.props.shapeState.values
       .split(',')
       .map(x => x.trim())
@@ -15,11 +14,16 @@ class List extends React.Component {
       });
 
     return (
-      <Group draggable onDragMove={(e) => this.props.updateState(this.props.shapeId, {
-        ...this.props.shapeState,
-        x: e.target.x(),
-        y: e.target.y()
-      })}>
+      <Group
+        draggable
+        onDragMove={e =>
+          this.props.updateState(this.props.shapeId, {
+            ...this.props.shapeState,
+            x: e.target.x(),
+            y: e.target.y()
+          })
+        }
+      >
         {values.map((val, index) => {
           return (
             <SquareNode
@@ -38,14 +42,18 @@ class List extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
-  shapeState: state.konva.dataStructures[ownProps.shapeId],
+  shapeState: state.konva.dataStructures[ownProps.shapeId]
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateState: (id, shapeState) => dispatch({
-    type: "UPDATE_SHAPE_STATE", payload: { shapeState, id: id.toString() }
-  })
+  updateState: (id, shapeState) =>
+    dispatch({
+      type: 'UPDATE_SHAPE_STATE',
+      payload: { shapeState, id: id.toString() }
+    })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List);

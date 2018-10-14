@@ -6,11 +6,9 @@ export default class Row extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {(
-          (this.props.pair && this.props.pair.length === 2) || [
-            undefined,
-            undefined
-          ]
+        {(this.props.pair && this.props.pair.length === 2
+          ? this.props.pair
+          : [undefined, undefined]
         ).map((val, index) => {
           return (
             <>
