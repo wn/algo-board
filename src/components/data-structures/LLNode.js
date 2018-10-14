@@ -47,11 +47,19 @@ class LLNode extends React.Component {
     });
   };
 
+  setText = () => {
+    const newText = prompt('Please enter some new text', this.props.shapeState.text);
+    this.props.updateState(this.props.shapeId, {
+      ...this.props.shapeState,
+      text: newText
+    })
+  }
+
   render() {
     const shapeState = this.props.shapeState;
     return (
       <React.Fragment>
-        <Group draggable onDragMove={this.updateLineStart}>
+        <Group draggable onDragMove={this.updateLineStart} onClick={this.setText}>
           <Shape
             sceneFunc={(context, shape) => {
               context.beginPath();
@@ -71,7 +79,7 @@ class LLNode extends React.Component {
             stroke="black"
             strokeWidth={4}
           />
-          <EditableText x={20} y={30} />
+          <EditableText x={20} y={30} text={this.props.shapeState.text} />
         </Group>
         <Arrow
           points={[
