@@ -4,15 +4,15 @@ import { Group } from 'react-konva';
 import { connect } from 'react-redux';
 
 class List extends React.Component {
-  render() {
-    const values = [];
-    this.props.shapeState.values
-      .split(',')
-      .map(x => x.trim())
-      .map((val, index) => {
-        values.push(val);
-      });
+  setText = (index) => {
+    const newText = prompt('Please enter new text', this.props.shapeState.values[index]);
+    this.props.updateState(this.props.shapeId, {
+      ...this.props.shapeState,
+      values: Object.assign([], this.props.shapeState.values, {[index]: newText})
+    });
+  }
 
+  render() {
     return (
       <Group
         draggable
@@ -24,13 +24,14 @@ class List extends React.Component {
           })
         }
       >
-        {values.map((val, index) => {
+        {this.props.shapeState.values.map((val, index) => {
           return (
             <SquareNode
               key={index}
               displacement={index}
               x={this.props.shapeState.x}
               y={this.props.shapeState.y}
+              onClick={() => this.setText(index)}
               text={val}
             />
           );
