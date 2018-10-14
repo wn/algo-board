@@ -33,6 +33,7 @@ export default class EditableText extends React.Component {
         align="center"
         verticalAlign="middle"
         fill={'black'}
+        onClick={this.props.onClick}
       />
     );
   }

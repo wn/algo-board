@@ -77,6 +77,8 @@ class GraphNode extends React.Component {
           }
         />
         <EditableText 
+          y={-70}
+          size={20}
           text={this.props.text || this.state.text} 
           onClick={this.setText}
         />
