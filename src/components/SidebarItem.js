@@ -1,5 +1,4 @@
 import React from 'react';
-import { ListGroupItem, Button } from 'react-bootstrap';
 import { Input } from 'mdbreact';
 import './Sidebar.css';
 
@@ -31,12 +30,11 @@ class SidebarItem extends React.Component {
             </React.Fragment>
           );
         })}
-        <Button
-          className={'DS-button'}
-          onClick={() => this.props.createDS(this.state)}
-        >
-          {this.props.dsName}
-        </Button>
+      <button 
+        type="button" 
+        class="btn btn-light DS-button"
+        onClick={() => this.props.createDS(this.state)}>{this.props.dsName}</button>
+          
       </div>
     );
   }
