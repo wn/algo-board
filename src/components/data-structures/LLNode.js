@@ -12,14 +12,6 @@ class LLNode extends React.Component {
       shapeSourceY: e.target.y()
     });
     Object.keys(this.props.pointingToThis).forEach(shapeId => {
-<<<<<<< HEAD
-      if (!this.props.pointingToThis[shapeId]) return;
-      this.props.updateState(shapeId, {
-        ...this.props.allDataStructures[shapeId],
-        lineEndX: e.target.x(),
-        lineEndY: e.target.y() + 30
-      });
-=======
       if (!this.props.pointingToThis[shapeId]
         || !this.props.pointingFrom[shapeId][this.props.shapeId]) return;
       this.props.updateState(
@@ -30,7 +22,6 @@ class LLNode extends React.Component {
           lineEndY: e.target.y() + 30,
         }
       );
->>>>>>> Add arrows for graph nodes
     });
   };
 
@@ -122,14 +113,9 @@ const mapStateToProps = (state, ownProps) => {
   return {
     shapeState: state.konva.dataStructures[ownProps.shapeId],
     allDataStructures: state.konva.dataStructures,
-<<<<<<< HEAD
-    pointingToThis: state.konva.associations.pointingTo[ownProps.shapeId]
-  };
-=======
     pointingToThis: state.konva.associations.pointingTo[ownProps.shapeId],
     pointingFrom: state.konva.associations.pointingFrom,
   }
->>>>>>> Add arrows for graph nodes
 };
 
 const mapDispatchToProps = dispatch => ({
