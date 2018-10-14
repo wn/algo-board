@@ -1,25 +1,27 @@
 import React from 'react';
 import { Arrow, Circle, Group } from 'react-konva';
+import { connect } from 'react-redux';
 
-export default class LLNode extends React.Component {
-  state = {
-    shapeSourceX: 0,
-    shapeSourceY: 100,
-    lineEndX: 0,
-    lineEndY: 0
-  };
+class Pointer extends React.Component {
 
   updateLineStart = e => {
-    this.setState({
-      shapeSourceX: e.target.x(),
-      shapeSourceY: e.target.y()
-    });
+    this.props.updateState(
+      this.props.shapeId,
+      {
+        ...this.props.shapeState,
+        shapeSourceX: e.target.x(),
+        shapeSourceY: e.target.y(),
+      }
+    );
   };
 
   updateLineEnd = e => {
-    this.setState({
+    this.props.updateState(
+      this.props.shapeId,
+      {
+      ...this.props.shapeState,
       lineEndX: e.target.x(),
-      lineEndY: e.target.y()
+      lineEndY: e.target.y(),
     });
   };
 
@@ -27,8 +29,8 @@ export default class LLNode extends React.Component {
     return (
       <Group draggable>
         <Circle
-          x={this.state.shapeSourceX}
-          y={this.state.shapeSourceY}
+          x={this.props.shapeState.shapeSourceX}
+          y={this.props.shapeState.shapeSourceY}
           radius={8}
           fill
           draggable
@@ -36,18 +38,18 @@ export default class LLNode extends React.Component {
         />
         <Arrow
           points={[
-            this.state.shapeSourceX,
-            this.state.shapeSourceY,
-            this.state.lineEndX,
-            this.state.lineEndY
+            this.props.shapeState.shapeSourceX,
+            this.props.shapeState.shapeSourceY,
+            this.props.shapeState.lineEndX,
+            this.props.shapeState.lineEndY
           ]}
           stroke
           strokeWidth={7}
           fill
         />
         <Circle
-          x={this.state.lineEndX}
-          y={this.state.lineEndY}
+          x={this.props.shapeState.lineEndX}
+          y={this.props.shapeState.lineEndY}
           radius={12}
           draggable
           onDragMove={this.updateLineEnd}
@@ -56,3 +58,28 @@ export default class LLNode extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    shapeState: state.konva.dataStructures[ownProps.shapeId],
+    allDataStructures: state.konva.dataStructures,
+    pointingToThis: state.konva.associations.pointingTo[ownProps.shapeId],
+  }
+};
+
+
+const mapDispatchToProps = dispatch => ({
+  updateState: (id, shapeState) => dispatch({
+    type: "UPDATE_SHAPE_STATE", payload: { shapeState, id: id.toString() }
+  }),
+  connectNodes: (source, dest) => dispatch({
+    type: "CONNECT_NODES", payload: { source, dest }
+  }),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Pointer);
+
+
