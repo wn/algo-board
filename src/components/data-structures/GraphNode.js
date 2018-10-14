@@ -1,16 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Circle, Group } from 'react-konva';
 
 import EditableText from './EditableText';
 
-export default class GraphNode extends React.Component {
+class GraphNode extends React.Component {
   state = {
     color: 'black',
     text: 'null',
-    radius: 50,
-    x: 50,
-    y: 50
+    radius: 20,
   };
+
+  updateLineStart = e => {
+    this.props.updateState(
+      this.props.shapeId,
+      {
+        ...this.props.shapeState,
+        shapeSourceX: e.target.x(),
+        shapeSourceY: e.target.y(),
+      }
+    );
+    Object.keys(this.props.pointingToThis).forEach(shapeId => {
+      if (!this.props.pointingToThis[shapeId]
+        || !this.props.pointingFrom[shapeId][this.props.shapeId]) return;
+      this.props.updateState(
+        shapeId,
+        {
+          ...this.props.allDataStructures[shapeId],
+          lineEndX: e.target.x(),
+          lineEndY: e.target.y(),
+        }
+      );
+    });
+  }
 
   handleDragEnd() {
     return e => {
@@ -31,33 +53,61 @@ export default class GraphNode extends React.Component {
 
   render(props) {
     /** Set default x and y as 0 */
-    const { x, y } = {
-      x: this.state.x,
-      y: this.state.y,
-      ...props
-    };
+    const { shapeSourceX, shapeSourceY } = this.props.shapeState;
 
     var diameter = 2 * this.state.radius;
 
     return (
       <Group
-        x={
-          x === 50 && this.props.displacement
-            ? x + this.props.displacement * diameter
-            : x
-        }
-        y={y}
-        onDragEnd={this.handleDragEnd(this)}
-        onClick={this.setText}
+        x={shapeSourceX}
+        y={shapeSourceY}
+        onDragMove={this.updateLineStart}
         draggable
       >
         <Circle
           radius={this.state.radius}
           strokeWidth={4}
           stroke={this.state.color}
+          onClick={() => 
+            this.props.addPointer(this.props.shapeId,
+              {
+                lineEndX: shapeSourceX,
+                lineEndY: shapeSourceY + 90,
+              })
+          }
         />
-        <EditableText text={this.props.text || this.state.text} />
+        <EditableText 
+          x={-20}
+          y={-40}
+          textSize={20}
+          text={this.props.text || this.state.text} 
+          onClick={this.setText}
+        />
       </Group>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...ownProps,
+    shapeState: state.konva.dataStructures[ownProps.shapeId],
+    allDataStructures: state.konva.dataStructures,
+    pointingToThis: state.konva.associations.pointingTo[ownProps.shapeId],
+    pointingFrom: state.konva.associations.pointingFrom,
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  addPointer: (graphNodeSourceId, shapeProps) => dispatch({
+    type: "ADD_STRUCTURE", payload: { 
+      structureName: 'GraphPointer', 
+      id: graphNodeSourceId + " " + Math.round(Math.random()*1000).toString(),
+      shapeState: { graphNodeSource: graphNodeSourceId, ...shapeProps } }
+  }),
+  updateState: (id, shapeState) => dispatch({
+    type: "UPDATE_SHAPE_STATE", payload: { shapeState, id: id.toString() }
+  })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GraphNode);

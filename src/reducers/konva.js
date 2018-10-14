@@ -108,8 +108,7 @@ export default function(state = initialState, action) {
           pointingFrom: {
             ...state.associations.pointingFrom,
             [source]: {
-              ...state.associations.pointingFrom[source],
-              [dest]: true
+              [dest]: true,
             }
           }
         }

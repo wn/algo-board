@@ -30,9 +30,11 @@ export default class EditableText extends React.Component {
         x={x}
         y={y}
         text={this.props.text}
+        fontSize={this.props.textSize || 16}
         align="center"
         verticalAlign="middle"
         fill={'black'}
+        onClick={this.props.onClick}
       />
     );
   }
