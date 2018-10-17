@@ -26,6 +26,8 @@ class Whiteboard extends Component {
 
   render() {
     const createDS = (dsName, props) => this.props.dss[dsName].component(props);
+    let binPositionX = this.state.stageWidth - 60;
+    let binPositionY = window.innerHeight - 70;
 
     return (
       <div
@@ -39,13 +41,14 @@ class Whiteboard extends Component {
               createDS(this.props.dataStructures[id].structureName, {
                 ...this.props.dataStructures[id].shapeState,
                 key: id,
-                shapeId: id
+                shapeId: id,
+                delArea: {
+                  x: binPositionX,
+                  y: binPositionY
+                }
               })
             )}
-            <Dustbin
-              xPosition={this.state.stageWidth - 60}
-              yPosition={window.innerHeight - 70}
-            />
+            <Dustbin xPosition={binPositionX} yPosition={binPositionY} />
           </Layer>
         </Stage>
       </div>
