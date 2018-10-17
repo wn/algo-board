@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Stage, Layer } from 'react-konva';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { Stage, Layer } from "react-konva";
+import { connect } from "react-redux";
+import Dustbin from "./Dustbin";
 
 class Whiteboard extends Component {
   state = {
@@ -9,7 +10,7 @@ class Whiteboard extends Component {
 
   componentDidMount() {
     this.checkSize();
-    window.addEventListener('resize', this.checkSize);
+    window.addEventListener("resize", this.checkSize);
   }
 
   checkSize = () => {
@@ -20,7 +21,7 @@ class Whiteboard extends Component {
   };
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.checkSize);
+    window.removeEventListener("resize", this.checkSize);
   }
 
   render() {
@@ -41,6 +42,10 @@ class Whiteboard extends Component {
                 shapeId: id
               })
             )}
+            <Dustbin
+              xPosition={this.state.stageWidth - 60}
+              yPosition={window.innerHeight - 70}
+            />
           </Layer>
         </Stage>
       </div>
