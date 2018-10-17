@@ -26,6 +26,8 @@ class Whiteboard extends Component {
 
   render() {
     const createDS = (dsName, props) => this.props.dss[dsName].component(props);
+
+    //Saved position of dustbin
     let binPositionX = this.state.stageWidth - 60;
     let binPositionY = window.innerHeight - 70;
 
