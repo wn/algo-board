@@ -7,7 +7,7 @@ class Hashtable extends React.Component {
   //Removes hashtable object
   remove = () => {
     this.Hashtable.removeChildren();
-    this.props.updateState(this.props.shapeId, {});
+    this.props.updateState(this.props.shapeId, { message: "deleted" });
   };
 
   //Checks position of hashtable on whiteboard

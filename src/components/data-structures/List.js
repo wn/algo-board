@@ -20,7 +20,7 @@ class List extends React.Component {
   //Removes list item
   remove = () => {
     this.ListGroup.removeChildren();
-    this.props.updateState(this.props.shapeId, {});
+    this.props.updateState(this.props.shapeId, { message: "deleted" });
   };
 
   //Checks the position of array on the whiteboard
