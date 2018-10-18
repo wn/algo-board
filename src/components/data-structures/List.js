@@ -20,10 +20,23 @@ class List extends React.Component {
   //Removes list item
   remove = () => {
     this.ListGroup.removeChildren();
-    this.props.updateState(this.props.shapeId, {
-      ...this.props.shapeState,
-      values: []
-    });
+    this.props.updateState(this.props.shapeId, {});
+  };
+
+  //Checks the position of array on the whiteboard
+  checkListPosition = e => {
+    //Position of dustbin
+    let binPosX = this.props.delArea.x - 130;
+    let binPosY = this.props.delArea.y - 10;
+
+    //Removes list if dragged to dustbin position
+    e.target.x() >= binPosX && e.target.y() >= binPosY
+      ? this.remove()
+      : this.props.updateState(this.props.shapeId, {
+          ...this.props.shapeState,
+          x: e.target.x(),
+          y: e.target.y()
+        });
   };
 
   render() {
@@ -32,18 +45,7 @@ class List extends React.Component {
         draggable
         ref={ref => (this.ListGroup = ref)}
         onDragMove={e => {
-          //Position of dustbin
-          let binPosX = this.props.delArea.x - 130;
-          let binPosY = this.props.delArea.y - 10;
-
-          //Removes list if dragged to dustbin position
-          e.target.x() >= binPosX && e.target.y() >= binPosY
-            ? this.remove()
-            : this.props.updateState(this.props.shapeId, {
-                ...this.props.shapeState,
-                x: e.target.x(),
-                y: e.target.y()
-              });
+          this.checkListPosition(e);
         }}
       >
         {this.props.shapeState.values.map((val, index) => {

@@ -17,7 +17,7 @@ class SidebarItem extends React.Component {
 
   render() {
     return (
-      <div class="DS-list input-group mb-3">
+      <div className="DS-list input-group mb-3">
         {this.props.propAttrs.map(attr => {
           return (
             <React.Fragment key={attr}>
@@ -36,7 +36,7 @@ class SidebarItem extends React.Component {
         <div className="input-group-append">
           <button
             type="button"
-            class="btn btn-light DS-button"
+            className="btn btn-light DS-button"
             onClick={() => this.props.createDS(this.state)}
           >
             {this.props.dsName}
