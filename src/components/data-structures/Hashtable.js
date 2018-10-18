@@ -11,7 +11,7 @@ class Hashtable extends React.Component {
   };
 
   //Checks position of hashtable on whiteboard
-  checkListPosition = e => {
+  checkPosition = e => {
     //Position of dustbin
     let binPosX = this.props.delArea.x - 200;
     let binPosY = this.props.delArea.y - 10;
@@ -33,7 +33,7 @@ class Hashtable extends React.Component {
         ref={ref => (this.Hashtable = ref)}
         draggable
         onDragMove={e => {
-          this.checkListPosition(e);
+          this.checkPosition(e);
         }}
       >
         {shapeState.keyValuePairs
