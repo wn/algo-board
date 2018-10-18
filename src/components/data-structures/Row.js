@@ -1,6 +1,6 @@
-import React from 'react';
-import Data from './Data';
-import EditableText from './EditableText';
+import React from "react";
+import Data from "./Data";
+import EditableText from "./EditableText";
 
 export default class Row extends React.Component {
   render() {
@@ -21,7 +21,7 @@ export default class Row extends React.Component {
                 key={val}
                 x={index * 200 + 50}
                 y={this.props.displacement * 50 + 20}
-                text={val ? val : 'null'}
+                text={val ? val : "null"}
               />
             </>
           );

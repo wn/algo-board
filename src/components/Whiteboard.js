@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Stage, Layer } from 'react-konva';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { Stage, Layer } from "react-konva";
+import { connect } from "react-redux";
+import Dustbin from "./Dustbin";
 
 class Whiteboard extends Component {
   state = {
@@ -9,7 +10,7 @@ class Whiteboard extends Component {
 
   componentDidMount() {
     this.checkSize();
-    window.addEventListener('resize', this.checkSize);
+    window.addEventListener("resize", this.checkSize);
   }
 
   checkSize = () => {
@@ -20,11 +21,15 @@ class Whiteboard extends Component {
   };
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.checkSize);
+    window.removeEventListener("resize", this.checkSize);
   }
 
   render() {
     const createDS = (dsName, props) => this.props.dss[dsName].component(props);
+
+    //Saved position of dustbin
+    let binPositionX = this.state.stageWidth - 60;
+    let binPositionY = window.innerHeight - 70;
 
     return (
       <div
@@ -38,9 +43,14 @@ class Whiteboard extends Component {
               createDS(this.props.dataStructures[id].structureName, {
                 ...this.props.dataStructures[id].shapeState,
                 key: id,
-                shapeId: id
+                shapeId: id,
+                delArea: {
+                  x: binPositionX,
+                  y: binPositionY
+                }
               })
             )}
+            <Dustbin xPosition={binPositionX} yPosition={binPositionY} />
           </Layer>
         </Stage>
       </div>
