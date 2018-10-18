@@ -21,8 +21,8 @@ export default class Node extends React.Component {
       <Image
         x={xPosition}
         y={yPosition}
-        width={50}
-        height={50}
+        width={55}
+        height={55}
         image={this.state.image}
       />
     );
