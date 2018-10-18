@@ -1,6 +1,6 @@
-import React from 'react';
-import { Input } from 'mdbreact';
-import './Sidebar.css';
+import React from "react";
+import { Input } from "mdbreact";
+import "./Sidebar.css";
 
 class SidebarItem extends React.Component {
   state = {
@@ -21,25 +21,28 @@ class SidebarItem extends React.Component {
         {this.props.propAttrs.map(attr => {
           return (
             <React.Fragment key={attr}>
-            <input type="text" 
-              label={this.state.value}
-              class="form-control DS-input" 
-              onChange={e => this.handleChange(e, attr)}
-              placeholder={this.state.placeholder[attr]}
-              aria-label={this.state.value} 
-              aria-describedby="basic-addon2" />
+              <input
+                type="text"
+                label={this.state.value}
+                className="form-control DS-input"
+                onChange={e => this.handleChange(e, attr)}
+                placeholder={this.state.placeholder[attr]}
+                aria-label={this.state.value}
+                aria-describedby="basic-addon2"
+              />
             </React.Fragment>
           );
         })}
-        <div class="input-group-append">
-          <button 
-            type="button" 
+        <div className="input-group-append">
+          <button
+            type="button"
             class="btn btn-light DS-button"
-            onClick={() => this.props.createDS(this.state)}>{this.props.dsName}</button>
+            onClick={() => this.props.createDS(this.state)}
+          >
+            {this.props.dsName}
+          </button>
         </div>
       </div>
-
-        
     );
   }
 }
